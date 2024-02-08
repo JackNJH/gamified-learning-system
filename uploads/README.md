@@ -1,18 +1,18 @@
 Directory Structure:
 
-- Admin Profile Pictures: uploads/admin/profilepic/{user_id}/pic.jpg
-- Teacher Profile Pictures: uploads/teacher/profilepic/{user_id}/pic.jpg
-- Student Profile Pictures: uploads/student/profilepic/{user_id}/pic.jpg
-
-- Teacher Badges: Organize badges by teacher and class. For instance:
-    - uploads/teacher/badges/{user_id}/{class_id}/badge1.jpg
-    - uploads/teacher/badges/{user_id}/{class_id}/badge2.jpg
+- Profile Pictures:
+    - uploads/profilepic/{user_id}/pic.jpg
+    - uploads/profilepic/{user_id}/pic1.jpg
 
 - Class Media:
     - Levels Media: 
         - uploads/classes/{class_id}/media/{chapter_id}/{level_id}/media1.jpg
         - uploads/classes/{class_id}/media/{chapter_id}/{level_id}/media2.jpg
 
-    - Class Thumbnails: 
+    - Class Thumbnails: (Only 1 thumbnail per class)
         - uploads/classes/{class_id}/thumbnail1.jpg
         - uploads/classes/{class_id}/thumbnail2.jpg
+
+    - Class Badges: (Only 1 badge per class)
+        - uploads/classes/{class_id}/badge1.jpg
+        - uploads/classes/{class_id}/badge2.jpg
