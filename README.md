@@ -6,6 +6,7 @@ Upload your files to the correct folders during development:
 |-----------------------------------------------|-------------|
 | External JavaScript files '.js'               | `js/`       |
 | Images used throughout the website (EXCLUDING chapter media, pfp, badges) | `images/`   |
+| Images that users upload (profile pic for all roles, badges for teacher) | `uploads/`   |
 | Parts of pages that can be reused between roles| `components/` |
 | Files accessible by more than one role        | `public/`   |
 | Chapter media                                 | System should add these under `chapter/` specific to the level. <br> For example: `chapter/level1/user_id/mediaPath` |

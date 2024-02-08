@@ -36,7 +36,7 @@
         // geoIp lookup function
         geoIpLookup: null,
         // initial country
-        initialCountry: "",
+        initialCountry: "auto",
         // don't insert international dial codes
         nationalMode: true,
         // display only these countries
