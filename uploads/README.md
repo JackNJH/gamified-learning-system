@@ -13,6 +13,6 @@ Directory Structure:
         - uploads/classes/{class_id}/media/{chapter_id}/{level_id}/media1.jpg
         - uploads/classes/{class_id}/media/{chapter_id}/{level_id}/media2.jpg
 
-    - Class Thumbnails (if applicable): 
+    - Class Thumbnails: 
         - uploads/classes/{class_id}/thumbnail1.jpg
         - uploads/classes/{class_id}/thumbnail2.jpg
