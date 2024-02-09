@@ -9,6 +9,8 @@
 <title>Register Page</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/submitButtons.css">
 <style>
     body {
         font-family: 'Montserrat', sans-serif;
@@ -37,7 +39,11 @@
         margin-bottom: 10px;
     }
 
-    input[type="text"], input[type="email"], input[type="password"], input[type="tel"], select {
+    input[type="text"], 
+    input[type="email"], 
+    input[type="password"], 
+    input[type="tel"], 
+    select {
         width: 100%;
         padding: 10px;
         margin-bottom: 15px;
@@ -46,22 +52,12 @@
         border-radius: 4px;
     }
 
-    input[type="submit"] {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        margin-top: 10px;
-        box-sizing: border-box;
-        border: none;
-        border-radius: 4px;
-        background-color: orange;
-        color: black;
-        font-size: 16px;
-        cursor: pointer;
-    }
-
-    input[type="submit"]:hover {
-        background-color: darkorange;
+    input[type="text"]::placeholder,
+    input[type="email"]::placeholder,
+    input[type="tel"]::placeholder,
+    input[type="password"]::placeholder {
+        font-family: 'Montserrat', sans-serif;
+        color: #999;
     }
 
     input[type="text"], input[type="email"], input[type="password"], input[type="tel"] {
@@ -80,7 +76,7 @@
 
 <div class="container">
     <div class="register-container">
-        <h2>Registeration</h2>
+        <h2><img src="../images/register.png" alt="Lock Icon" width="35">Registeration</h2>
         <form action="" method="post">
             <label for="userID">User ID:</label>
             <input type="text" id="userID" name="userID" placeholder="Enter your User ID" required><br>
@@ -95,7 +91,7 @@
             <input type="email" id="email" name="email" placeholder="Enter your Email" required><br>
 
             <label for="phone">Phone Number:</label>
-            <input id="phone" name="Tel" type="tel" style="width: 100%;" required placeholder="Enter your phone number (include country code)">
+            <input id="phone" name="Tel" type="tel" style="width: 100%;" required placeholder="Include country code">
             <div id="error-msg" style="color: red; display: none;">Invalid</div>
             <div id="valid-msg" style="display: none;">✓ Valid</div>
 
@@ -129,7 +125,7 @@
                 <option value="teacher">Teacher</option>
             </select><br>
 
-            <input type="submit" value="Register" class="form-btn">
+            <input type="submit" value="REGISTER" class="form-btn">
         </form>
         <p>Already have an account? <a href="index.php">Login Now!</a></p>
     </div>

@@ -7,6 +7,8 @@
 <head>
 <title>Login</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/submitButtons.css">
 <style>
     body {
         font-family: 'Montserrat', sans-serif;
@@ -59,25 +61,6 @@
         margin-top: 10px;
     }
 
-    input[type="submit"] {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        margin-top: 10px;
-        box-sizing: border-box;
-        border: none;
-        border-radius: 4px;
-        background-color: orange;
-        color: black;
-        font-size: 16px;
-        cursor: pointer;
-    }
-
-    input[type="submit"]:hover {
-        background-color: darkorange;
-    }
-
-
 </style>
 </head>
 <body>
@@ -86,8 +69,8 @@
     <div class="login-container">
         <a href="index.php"><img src="../images/logo.png" width="35%"></a>
         <form>
-            <input type="text" name="userID" placeholder="UserID">
-            <input type="password" name="password" placeholder="Password">
+            <input type="text" name="userID" placeholder="UserID" required>
+            <input type="password" name="password" placeholder="Password" required>
             <div class="login-options">
                 <div>
                     <input type="checkbox" id="remember" name="remember"><label for="remember" class="remember">Remember me?</label>
@@ -96,7 +79,7 @@
                     <a href="reset_password.php">Forgot Password?</a>
                 </div>
             </div>
-            <input type="submit" value="Login" class="form-btn">
+            <input type="submit" value="LOGIN" class="form-btn">
             <p>Are you new? <a href="register.php">Register Now!</a></p>
         </form>
     </div>
