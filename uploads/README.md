@@ -22,10 +22,7 @@ Directory Structure:
         - uploads/classes/{class_id}/media/{chapter_id}/{level_id}/media2.jpg
 
     - Questions and Answers Media:
-        - uploads/classes/{class_id}/media/{chapter_id}/{level_id}/questions/
+        - uploads/classes/{class_id}/media/{chapter_id}/{level_id}/{question_id}/
             - question1.jpg
-            - question2.jpg
-        
-        - uploads/classes/{class_id}/media/{chapter_id}/{level_id}/questions/answers/
-            - answer1.jpg
-            - answer2.jpg
+            - question1_answer1.jpg
+            - question1_answer2.jpg
