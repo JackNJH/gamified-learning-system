@@ -1,5 +1,9 @@
 Directory Structure:
 
+- Ticket Attachments:
+    - uploads/tickets/{ticket_id}/attachment1.jpg
+    - uploads/tickets/{ticket_id}/attachment2.jpg
+
 - Profile Pictures:
     - uploads/profilepic/{user_id}/pic.jpg
     - uploads/profilepic/{user_id}/pic1.jpg
@@ -17,7 +21,11 @@ Directory Structure:
         - uploads/classes/{class_id}/media/{chapter_id}/{level_id}/media1.jpg
         - uploads/classes/{class_id}/media/{chapter_id}/{level_id}/media2.jpg
 
-    - Questions Media:
+    - Questions and Answers Media:
         - uploads/classes/{class_id}/media/{chapter_id}/{level_id}/questions/
             - question1.jpg
             - question2.jpg
+        
+        - uploads/classes/{class_id}/media/{chapter_id}/{level_id}/questions/answers/
+            - answer1.jpg
+            - answer2.jpg
