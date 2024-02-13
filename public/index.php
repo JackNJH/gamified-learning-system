@@ -1,6 +1,48 @@
 <?php
-    include 'header.php'; // Header
+
+require "../modules/config.php";
+include '../components/header.php'; // Header
+
+// Redirect if user is already logged in
+if ($role != '') {
+    header("Location: ../index.php");
+    exit; 
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $Email = $_POST["email"];
+    $Password = $_POST["password"];
+
+    $sql = "SELECT * FROM user WHERE UserEmail ='$Email' AND UserPass ='$Password'";
+
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        $user_info = mysqli_fetch_array($result);
+        
+        $_SESSION['email'] = $Email;
+        $_SESSION['username'] = $user_info['UserName'];
+        $_SESSION['user_id'] = $user_info['UserID'];
+        $role = $user_info['UserType'];
+        $_SESSION['role'] = $user_info['UserType'];
+
+        if (!empty($_POST["remember"])) {
+            setcookie("email", $Email, time() + (365 * 24 * 60 * 60));
+            setcookie("password", $_POST["password"], time() + (365 * 24 * 60 * 60));
+        } else {
+            setcookie("email", "", time() - 3600);
+            setcookie("password", "", time() - 3600);
+        }
+
+        
+        header("Location: ../index.php");
+        exit;
+    } else {
+        include 'login_err.php';
+    }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +77,7 @@
         max-width: 100%; 
     }
 
-    input[type="text"], input[type="password"] {
+    input[type="email"], input[type="password"] {
         width: 100%;
         padding: 10px;
         margin: 5px 0;
@@ -44,13 +86,13 @@
         border-radius: 4px;
     }
 
-    input[type="text"]::placeholder,
+    input[type="email"]::placeholder,
     input[type="password"]::placeholder {
         font-family: 'Montserrat', sans-serif;
         color: #999; 
     }
 
-    input[type="text"]:focus,
+    input[type="email"]:focus,
     input[type="password"]:focus {
         border-color: #007bff; 
     }
@@ -68,9 +110,9 @@
 <div class="container">
     <div class="login-container">
         <a href="index.php"><img src="../images/logo.png" width="35%"></a>
-        <form>
-            <input type="text" name="userID" placeholder="UserID" required>
-            <input type="password" name="password" placeholder="Password" required>
+        <form method="post">
+            <input type="email" name="email" id="email" placeholder="Email" required>
+            <input type="password" name="password" id="password" placeholder="Password" required>
             <div class="login-options">
                 <div>
                     <input type="checkbox" id="remember" name="remember"><label for="remember" class="remember">Remember me?</label>

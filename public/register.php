@@ -1,5 +1,5 @@
 <?php
-    include 'header.php'; // Header
+    include '../components/header.php'; // Header
 ?>
 
 
@@ -78,10 +78,8 @@
     <div class="register-container">
         <h2><img src="../images/register.png" alt="Lock Icon" width="35">Registeration</h2>
         <form action="" method="post">
-            <label for="userID">User ID:</label>
-            <input type="text" id="userID" name="userID" placeholder="Enter your User ID" required><br>
 
-            <label for="username">Display Name:</label>
+            <label for="username">Username:</label>
             <input type="text" id="username" name="username" placeholder="Enter your Username" required><br>
 
             <label for="password">Password:</label>

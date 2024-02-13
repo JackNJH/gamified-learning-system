@@ -1,5 +1,5 @@
 <?php
-    include 'header.php'; // Header
+    include '../components/header.php'; // Header
 ?>
 
 <!DOCTYPE html>
@@ -93,8 +93,8 @@
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" placeholder="Enter your email" required><br>
 
-            <label for="userID">User ID:</label>
-            <input type="text" id="userID" name="userID" placeholder="Enter your User ID" required><br>
+            <label for="userID">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your Username" required><br>
 
             <label for="phone">Phone Number:</label>
             <input type="tel" id="phone" name="phone" placeholder="0000000000" required><br>

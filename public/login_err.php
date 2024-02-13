@@ -18,8 +18,12 @@
         width: 50%; 
         max-width: 400px; 
         margin: 0 auto;
-        margin-top: 50px; 
-        position: relative; 
+        margin-top: 20px; 
+        position: fixed;
+        top: 100px;
+        left: 50%; 
+        transform: translate(-50%); 
+        z-index: 9999; 
         border-radius: 8px;
     }
 
@@ -42,8 +46,8 @@
 <body>
 
 <div class="login-alert">
-    <span class="login-alert-closebtn" onclick="window.location.href = 'login.php';">&times;</span> 
-    <strong>Wrong username or password.</strong> Please try again.
+    <span class="login-alert-closebtn" onclick="window.location.href = 'index.php';">&times;</span> 
+    <strong>Wrong email or password.</strong> Please try again.
 </div>
 
 </body>

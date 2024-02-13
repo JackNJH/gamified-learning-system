@@ -1,10 +1,2 @@
-Files to be included:
-
-- View Profile
-- Edit Profile 
-- Reset Password
-- Chapters
-- Levels
-- Questions
-
-Other reusable code can also be placed in here.
+PHP files with <font color="red">NO HTML</font>. <br>
+Independent codes that constructs a function in another page.
