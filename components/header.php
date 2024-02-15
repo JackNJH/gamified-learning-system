@@ -2,13 +2,13 @@
     require '../modules/config.php';
 
     //Get image path from database
-    function getUserProfilePicture($conn, $userId) {
+    function getUserProfilePicture($conn, $user_id) {
         
-        $query = "SELECT profile_picture FROM users WHERE id = $userId";
+        $query = "SELECT UserPFP FROM user WHERE UserID = $user_id";
         $result = mysqli_query($conn, $query);
         if ($result && mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
-            return $row['profile_picture'];
+            return $row['UserPFP'];
         }
         return null; 
     }
@@ -70,8 +70,11 @@
 
         .user-profile img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover; 
+            object-position: center; 
         }
+
 
         .username {
             margin-left: 10px;
@@ -167,7 +170,7 @@
         <div class="username"><?php echo $username; ?>
             <?php if ($role): ?>
                 <div class="dropdown-content">
-                    <a href="profile.php"><img src="../images/profileicon.png" alt="Profile">Profile</a>
+                    <a href="../public/profile.php"><img src="../images/profileicon.png" alt="Profile">Profile</a>
                     <a href="../modules/logout.php"><img src="../images/logout.png" alt="Profile">Logout</a>
                 </div>
             <?php endif; ?>
