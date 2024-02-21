@@ -144,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         .show-password:hover,
         .confirm-password:hover {
-            filter: drop-shadow(0 0 0 rgba(0, 0, 0, 2));
+            filter: drop-shadow(0 0 0 rgba(0, 0, 0, 1));
         }
 
 </style>

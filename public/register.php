@@ -1,5 +1,6 @@
 <?php
 require '../modules/config.php';    
+
 if ($role != '') {
     header("Location: ../index.php");
     exit; 
@@ -18,11 +19,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($password != $confirmPassword) {
         $error = "Password and Confirmation Password are different!";
     } else {
-        $sql = "INSERT INTO user (UserName, UserEmail, UserTel, UserPass, UserType, UserCreateDate) VALUES ('$username', '$email', '$phone', '$password', '$role', '$create_date')";
+        $user_id = uniqid("U"); 
+        $sql = "INSERT INTO user (UserID, UserName, UserEmail, UserTel, UserPass, UserType, UserCreateDate) VALUES ('$user_id', '$username', '$email', '$phone', '$password', '$role', '$create_date')";
         
         if (mysqli_query($conn, $sql)) {
-            echo "<script>alert('Registration successful!'); window.location.href='../index.php';</script>";
-            exit();
+            
+            $teacher_id = uniqid("T");
+            $student_id = uniqid("S");
+            
+            switch ($role) {
+                case 'teacher':
+                    $sql_role = "INSERT INTO teacher (TeacherID, UserID) VALUES ('$teacher_id', '$user_id')";
+                    break;
+                case 'student':
+                    $sql_role = "INSERT INTO student (StudentID, UserID) VALUES ('$student_id', '$user_id')";
+                    break;
+                default:
+                    break;
+            }
+            
+            if (isset($sql_role)) {
+                if (mysqli_query($conn, $sql_role)) {
+                    echo "<script>alert('Registration successful!'); window.location.href='../index.php';</script>";
+                } else {
+                    echo "Error: " . $sql_role . "<br>" . mysqli_error($conn);
+                }
+            }
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
@@ -31,6 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 include '../components/header.php'; 
 ?>
+
+
+
 
 
 <!DOCTYPE html>
@@ -127,7 +152,7 @@ include '../components/header.php';
 
     .show-password:hover,
     .confirm-password:hover {
-        filter: drop-shadow(0 0 0 rgba(0, 0, 0, 2));
+        filter: drop-shadow(0 0 0 rgba(0, 0, 0, 1));
     }
 
 

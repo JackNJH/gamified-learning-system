@@ -4,7 +4,7 @@
     //Get image path from database
     function getUserProfilePicture($conn, $user_id) {
         
-        $query = "SELECT UserPFP FROM user WHERE UserID = $user_id";
+        $query = "SELECT UserPFP FROM user WHERE UserID = '$user_id'";
         $result = mysqli_query($conn, $query);
         if ($result && mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);

@@ -1,18 +1,18 @@
 <?php
-    require '../modules/config.php';    
+require '../modules/config.php';    
 
-    function getHeader($role) {
-        switch ($role) {
-            case 'admin':
-                return 'Admin View Profile';
-            case 'teacher':
-                return 'Teacher View Profile';
-            case 'student':
-                return 'Student View Profile';
-            default:
-                return 'View Profile';
-        }
+function getHeader($role) {
+    switch ($role) {
+        case 'admin':
+            return 'Admin View Profile';
+        case 'teacher':
+            return 'Teacher View Profile';
+        case 'student':
+            return 'Student View Profile';
+        default:
+            return 'View Profile';
     }
+}
 
 $userProfilePicture = getUserProfilePicture($conn, $user_id);
 $headerText = getHeader($role);
@@ -68,6 +68,10 @@ $headerText = getHeader($role);
         width: 25px; 
         height: 25px; 
         cursor: pointer;
+    }
+
+    .edit-icon:hover {
+        filter: drop-shadow(0 0 0 rgba(0, 0, 0, 1));
     }
 
 </style>
