@@ -1,13 +1,12 @@
 <?php
-
 require "../modules/config.php";
-include '../components/header.php'; // Header
-
 // Redirect if user is already logged in
 if ($role != '') {
     header("Location: ../index.php");
     exit; 
 }
+
+include '../components/header.php'; // Header
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $Email = $_POST["email"];

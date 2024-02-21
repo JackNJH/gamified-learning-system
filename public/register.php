@@ -1,32 +1,35 @@
 <?php
-    require '../modules/config.php';    
+require '../modules/config.php';    
+if ($role != '') {
+    header("Location: ../index.php");
+    exit; 
+}
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['cpassword']; 
+    $email = $_POST['email'];
+    $phone = $_POST['tel'];
+    $role = $_POST['role'];
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $confirmPassword = $_POST['cpassword']; 
-        $email = $_POST['email'];
-        $phone = $_POST['tel'];
-        $role = $_POST['role'];
-
-        $create_date = date("Y-m-d H:i:s");
+    $create_date = date("Y-m-d H:i:s");
+    
+    if ($password != $confirmPassword) {
+        $error = "Password and Confirmation Password are different!";
+    } else {
+        $sql = "INSERT INTO user (UserName, UserEmail, UserTel, UserPass, UserType, UserCreateDate) VALUES ('$username', '$email', '$phone', '$password', '$role', '$create_date')";
         
-        if ($password != $confirmPassword) {
-            $error = "Password and Confirmation Password are different!";
+        if (mysqli_query($conn, $sql)) {
+            echo "<script>alert('Registration successful!'); window.location.href='../index.php';</script>";
+            exit();
         } else {
-            $sql = "INSERT INTO user (UserName, UserEmail, UserTel, UserPass, UserType, UserCreateDate) VALUES ('$username', '$email', '$phone', '$password', '$role', '$create_date')";
-            
-            if (mysqli_query($conn, $sql)) {
-                echo "<script>alert('Registration successful!'); window.location.href='../index.php';</script>";
-                exit();
-            } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-            }
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
     }
-    
-    include '../components/header.php'; 
+}
+
+include '../components/header.php'; 
 ?>
 
 

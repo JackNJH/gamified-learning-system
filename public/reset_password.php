@@ -1,37 +1,40 @@
 <?php
-    require '../modules/config.php';
-    include '../components/header.php'; // Header
+require '../modules/config.php';
+if ($role != ''){
+    header("Location: ../index.php");
+    die;
+}
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email = $_POST['email'];
-        $username = $_POST['username'];
-        $phone = $_POST['phone'];
-        $newPassword = $_POST['password'];
-        $confirmPassword = $_POST['cpassword'];
+include '../components/header.php'; // Header
 
-        if ($newPassword != $confirmPassword) {
-            $error = 'New Password and Confirmed Password do not match.';
-        } else {
-            
-            $query = "SELECT * FROM user WHERE UserEmail = '$email' AND UserName = '$username' AND UserTel = '$phone'";
-            $result = mysqli_query($conn, $query);
-    
-            if (mysqli_num_rows($result) == 1) {
-                $updateQuery = "UPDATE user SET UserPass = '$newPassword' WHERE UserEmail = '$email' AND UserName = '$username' AND UserTel = '$phone'";
-                $updateResult = mysqli_query($conn, $updateQuery);
-    
-                if ($updateResult) {
-                    echo "<script> alert('Password reset successful!'); window.location.href='../index.php';</script>";
-                } else {
-                    $error = "Error updating password.";
-                }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $username = $_POST['username'];
+    $phone = $_POST['phone'];
+    $newPassword = $_POST['password'];
+    $confirmPassword = $_POST['cpassword'];
+
+    if ($newPassword != $confirmPassword) {
+        $error = 'New Password and Confirmed Password do not match.';
+    } else {
+        
+        $query = "SELECT * FROM user WHERE UserEmail = '$email' AND UserName = '$username' AND UserTel = '$phone'";
+        $result = mysqli_query($conn, $query);
+
+        if (mysqli_num_rows($result) == 1) {
+            $updateQuery = "UPDATE user SET UserPass = '$newPassword' WHERE UserEmail = '$email' AND UserName = '$username' AND UserTel = '$phone'";
+            $updateResult = mysqli_query($conn, $updateQuery);
+
+            if ($updateResult) {
+                echo "<script> alert('Password reset successful!'); window.location.href='../index.php';</script>";
             } else {
-                $error = "Invalid credentials.";
+                $error = "Error updating password.";
             }
+        } else {
+            $error = "Invalid credentials.";
         }
     }
-
-
+}
 ?>
 
 <!DOCTYPE html>

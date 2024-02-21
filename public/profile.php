@@ -1,6 +1,11 @@
 <?php
-    include '../components/header.php'; // Header
-    require_once '../components/profileLeft.php'
+include '../components/header.php'; // Header
+if ($role == ''){
+    header("Location: ../index.php");
+    die;
+}
+
+require_once '../components/profileLeft.php'
 ?>
 
 <!DOCTYPE html>
