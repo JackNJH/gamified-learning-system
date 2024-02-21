@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 16, 2024 at 02:58 PM
+-- Generation Time: Feb 21, 2024 at 02:01 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
-  `AdminID` int NOT NULL AUTO_INCREMENT,
-  `UserID` int NOT NULL,
+  `AdminID` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `UserID` varchar(30) NOT NULL,
   PRIMARY KEY (`AdminID`),
   KEY `UserID` (`UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `chapter` (
 DROP TABLE IF EXISTS `class`;
 CREATE TABLE IF NOT EXISTS `class` (
   `ClassID` int NOT NULL AUTO_INCREMENT,
-  `TeacherID` int NOT NULL,
+  `TeacherID` varchar(30) NOT NULL,
   `ClassName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `ClassDesc` text NOT NULL,
   `ClassDashboard` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -113,12 +113,12 @@ CREATE TABLE IF NOT EXISTS `class` (
 DROP TABLE IF EXISTS `classprogress`;
 CREATE TABLE IF NOT EXISTS `classprogress` (
   `ProgressID` int NOT NULL AUTO_INCREMENT,
-  `StudentID` int NOT NULL,
+  `StudentID` varchar(30) NOT NULL,
   `ClassID` int NOT NULL,
   `ProgressPoints` int NOT NULL,
   PRIMARY KEY (`ProgressID`),
-  KEY `StudentID` (`StudentID`),
-  KEY `ClassID` (`ClassID`)
+  KEY `ClassID` (`ClassID`),
+  KEY `StudentID` (`StudentID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -131,7 +131,7 @@ DROP TABLE IF EXISTS `comments`;
 CREATE TABLE IF NOT EXISTS `comments` (
   `CommentID` int NOT NULL AUTO_INCREMENT,
   `ClassID` int NOT NULL,
-  `StudentID` int NOT NULL,
+  `StudentID` varchar(30) NOT NULL,
   `CommentText` text NOT NULL,
   PRIMARY KEY (`CommentID`),
   KEY `ClassID` (`ClassID`),
@@ -179,11 +179,18 @@ CREATE TABLE IF NOT EXISTS `question` (
 
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE IF NOT EXISTS `student` (
-  `StudentID` int NOT NULL AUTO_INCREMENT,
-  `UserID` int NOT NULL,
+  `StudentID` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `UserID` varchar(30) NOT NULL,
   PRIMARY KEY (`StudentID`),
   KEY `UserID` (`UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`StudentID`, `UserID`) VALUES
+('S65d5f97ecec69', 'U65d5f97ece763');
 
 -- --------------------------------------------------------
 
@@ -196,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `studentbadge` (
   `EarnedBadgeID` int NOT NULL AUTO_INCREMENT,
   `EarnedBadgeDate` date NOT NULL,
   `BadgeID` int NOT NULL,
-  `StudentID` int NOT NULL,
+  `StudentID` varchar(30) NOT NULL,
   PRIMARY KEY (`EarnedBadgeID`),
   KEY `BadgeID` (`BadgeID`),
   KEY `StudentID` (`StudentID`)
@@ -210,11 +217,18 @@ CREATE TABLE IF NOT EXISTS `studentbadge` (
 
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE IF NOT EXISTS `teacher` (
-  `TeacherID` int NOT NULL AUTO_INCREMENT,
-  `UserID` int NOT NULL,
+  `TeacherID` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `UserID` varchar(30) NOT NULL,
   PRIMARY KEY (`TeacherID`),
   KEY `UserID` (`UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `teacher`
+--
+
+INSERT INTO `teacher` (`TeacherID`, `UserID`) VALUES
+('T65d5f96036291', 'U65d5f960356df');
 
 -- --------------------------------------------------------
 
@@ -225,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `teacher` (
 DROP TABLE IF EXISTS `tickets`;
 CREATE TABLE IF NOT EXISTS `tickets` (
   `TicketID` int NOT NULL AUTO_INCREMENT,
-  `StudentID` int NOT NULL,
+  `StudentID` varchar(30) NOT NULL,
   `TicketCtgy` varchar(25) NOT NULL,
   `TicketDesc` text NOT NULL,
   `TicketAttch` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -242,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `tickets` (
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `UserID` int NOT NULL AUTO_INCREMENT,
+  `UserID` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `UserName` varchar(25) NOT NULL,
   `UserEmail` varchar(250) NOT NULL,
   `UserTel` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -252,16 +266,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   `UserPFP` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `UserCreateDate` date NOT NULL,
   PRIMARY KEY (`UserID`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`UserID`, `UserName`, `UserEmail`, `UserTel`, `UserPass`, `UserType`, `UserBio`, `UserPFP`, `UserCreateDate`) VALUES
-(1, 'imadmin', 'imadmin@gmail.com', '123456789', 'imadmin', 'admin', 'bwwwwwsdszdqw', '../uploads/profilepic/1/587b57f888b1cdcc0e895cbdcfde1c1e.jpg', '2024-02-15'),
-(2, 'teachergae', 'teachergae@gmail.com', '321654987', 'teachergae', 'teacher', 'asdqwdadq', '', '2024-02-15'),
-(3, 'student123', 'student123@gmail.com', '1234567', 'student123', 'student', 'sdvegd', '../uploads/profilepic/3/meme-profile-picture-vnigweuy4onsxunv.jpg', '2024-02-15');
+('Adminidsimulator', 'imadmin', 'imadmin@gmail.com', '12345678', 'imadmin', 'admin', '', '../uploads/profilepic/Adminidsimulator/71f9cd8213812af6235984e995854923.jpg', '2024-02-21'),
+('U65d5f960356df', 'teachergae', 'teachergae@gmail.com', '123123123', 'teachergae', 'teacher', '', '', '2024-02-21'),
+('U65d5f97ece763', 'student123', 'student123@gmail.com', '32132132', 'student123', 'student', '', '', '2024-02-21');
 
 --
 -- Constraints for dumped tables
@@ -301,8 +315,8 @@ ALTER TABLE `class`
 -- Constraints for table `classprogress`
 --
 ALTER TABLE `classprogress`
-  ADD CONSTRAINT `classprogress_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `student` (`StudentID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `classprogress_ibfk_2` FOREIGN KEY (`ClassID`) REFERENCES `class` (`ClassID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `classprogress_ibfk_2` FOREIGN KEY (`ClassID`) REFERENCES `class` (`ClassID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `classprogress_ibfk_3` FOREIGN KEY (`StudentID`) REFERENCES `student` (`StudentID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `comments`
