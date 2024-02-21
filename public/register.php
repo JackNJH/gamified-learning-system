@@ -1,7 +1,6 @@
 <?php
     require '../modules/config.php';    
 
-    $errorMessage = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST['username'];
@@ -45,6 +44,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/submitButtons.css">
+<link rel="stylesheet" href="../css/error.css">
 <style>
     body {
         font-family: 'Montserrat', sans-serif;
@@ -131,15 +131,6 @@
     #error-msg, #valid-msg {
         margin-top: 10px; 
         font-weight: bold; 
-    }
-    
-    .error-message {
-        background-color: #ffcccc;
-        color: #ff0000;
-        border: 1px solid #ff0000;
-        padding: 10px;
-        margin-bottom: 10px;
-        text-align: center;
     }
 
     .intl-tel-input{
