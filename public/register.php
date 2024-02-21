@@ -71,7 +71,7 @@ include '../components/header.php';
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.19/build/js/intlTelInput.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/submitButtons.css">
+<link rel="stylesheet" href="../css/submitBtns.css">
 <link rel="stylesheet" href="../css/error.css">
 <style>
     body {

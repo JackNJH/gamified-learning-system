@@ -18,6 +18,7 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
 $headerText = getHeader($role);
 ?>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/h2_title.css">
 <style>
     .profile-wrapper {
@@ -30,12 +31,12 @@ $headerText = getHeader($role);
     }
 
     .profile-info-left {
-        margin-top: 50px; 
+        margin-top: 40px; 
     }
 
     .user-profile-left { 
         text-align: center; 
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         position: relative;
     }
 
@@ -55,11 +56,13 @@ $headerText = getHeader($role);
 
     .admin-text {
         color: limegreen;
-        padding: 5px 10px;
         margin-bottom: 10px;
-        font-size: 25;
+        font-size: 25px;
         font-weight: bold;
         font-family: 'Montserrat', sans-serif; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
     }
 
     .edit-icon {
@@ -71,7 +74,59 @@ $headerText = getHeader($role);
     }
 
     .edit-icon:hover {
-        filter: drop-shadow(0 0 0 rgba(0, 0, 0, 1));
+        filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.5));
+    }
+
+    .user-profile-left2 {
+        display: flex;
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .user-badge-container {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+        margin-top: 80px; 
+    }
+
+    .user-badge {
+        width: 175px; 
+        height: 175px; 
+        margin: 0 20px; 
+        filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+    }
+
+    .empty-badge {
+        width: 175px; 
+        height: 175px; 
+        margin: 0 20px; 
+        filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+        opacity: 0.5;
+    }
+
+    .user-badge:hover {
+        transform: scale(1.1); 
+        transition: transform 0.3s ease; 
+    }
+
+    .badges-button {
+        padding: 10px 20px;
+        margin-top: 50px;
+        background-color: bisque;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        font-family: 'Poppins', sans-serif; 
+        font-size: 15;
+    }
+
+    .badges-button:hover {
+        background-color: chocolate;
+        font-weight: bold;
+        color: white;
     }
 
 </style>
@@ -80,10 +135,12 @@ $headerText = getHeader($role);
 <div class="profile-wrapper">
     <div class="profileLeft">
         <div class="profile-info-left">
+            <?php if ($role === 'admin'): ?>
+                <div class="admin-text">YOU ARE AN ADMIN</div>
+            <?php endif; ?>
+
+            <!-- User Profile Pic + Username -->
             <div class="user-profile-left">
-                <?php if ($role === 'admin'): ?>
-                    <div class="admin-text">YOU ARE AN ADMIN</div>
-                <?php endif; ?>
                 <?php if ($userProfilePicture): ?>
                     <img class="user-profile-img" src="<?php echo $userProfilePicture; ?>" alt="Profile Picture">
                 <?php else: ?>
@@ -92,9 +149,41 @@ $headerText = getHeader($role);
                 <img class="edit-icon" src="../images/edit.png" alt="Edit Profile Picture">
             </div>
             <div class="username-left"><?php echo $username; ?></div>
+
+            <!-- User Badges -->
+            <div class="user-profile-left2">
+            <?php if ($role === 'admin'): ?>
+                <div class="user-badge-container">
+                    <img class="user-badge" src="../images/<?php echo $role; ?>Badge.png" alt="<?php echo ucfirst($role); ?> Badge" title="You have the <?php echo $role; ?> role!">
+                    <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                    <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                </div>
+            <?php endif; ?>
+            <?php if ($role === 'teacher'): ?>
+                <div class="user-badge-container">
+                    <img class="user-badge" src="../images/<?php echo $role; ?>Badge.png" alt="<?php echo ucfirst($role); ?> Badge" title="You have the <?php echo $role; ?> role!">
+                    <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                    <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                </div>
+            <?php endif; ?>
+            <?php if ($role === 'student'): ?>
+                <div class="user-badge-container">
+                    <img class="user-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                    <img class="user-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                    <img class="user-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                </div>
+            <?php endif; ?>
+            
+            <?php if ($role === 'student'): ?>
+                <button class="badges-button" onclick="location.href='../public/editBadges.php'" type="button">Badges</button>
+            <?php endif; ?>
+            
         </div>
     </div>
 </div>
+
+
+
 <form id="profile-picture-form" action="../modules/upload_pfp.php" method="post" enctype="multipart/form-data">
     <input type="file" id="profile-picture-input" name="profile-picture" style="display: none;">
 </form>

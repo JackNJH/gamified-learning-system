@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <title>Login</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/submitButtons.css">
+<link rel="stylesheet" href="../css/submitBtns.css">
 <style>
     body {
         font-family: 'Montserrat', sans-serif;
