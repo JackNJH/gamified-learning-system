@@ -179,7 +179,7 @@ include '../components/header.php';
         <form action="" method="post">
 
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" placeholder="Enter your Username" required><br>
+            <input type="text" id="username" name="username" placeholder="Enter your Username (max 20 characters)" maxlength="20" required><br>
 
             <div class="password-input">
                 <label for="password">Password:</label>

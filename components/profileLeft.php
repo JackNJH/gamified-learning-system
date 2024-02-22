@@ -4,8 +4,13 @@ require '../modules/config.php';
 $userProfilePicture = getUserProfilePicture($conn, $user_id);
 ?>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
     .profile-wrapper-left {
         display: flex;
         justify-content: center; 
@@ -126,8 +131,8 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
     }
 
 </style>
-
-
+</head>
+<body>
 <div class="profile-wrapper-left">
     <div class="profileLeft">
         <div class="profile-info-left">
@@ -194,6 +199,13 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
         document.querySelector('#profile-picture-form').submit();
     });
 </script>
+</body>
+</html>
+
+
+
+
+
 
 
 

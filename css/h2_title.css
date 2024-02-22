@@ -2,6 +2,7 @@
 
 h2 {
     font-family: 'Montserrat', sans-serif;
+    display: inline-block;
     margin-left: 50px;
     margin-top: 50px;
     font-size: 1.3vw
