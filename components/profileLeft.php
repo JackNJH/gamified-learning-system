@@ -1,25 +1,10 @@
 <?php
 require '../modules/config.php';    
 
-function getHeader($role) {
-    switch ($role) {
-        case 'admin':
-            return 'Admin View Profile';
-        case 'teacher':
-            return 'Teacher View Profile';
-        case 'student':
-            return 'Student View Profile';
-        default:
-            return 'View Profile';
-    }
-}
-
 $userProfilePicture = getUserProfilePicture($conn, $user_id);
-$headerText = getHeader($role);
 ?>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/h2_title.css">
 <style>
     .profile-wrapper {
         display: flex;
@@ -30,9 +15,11 @@ $headerText = getHeader($role);
         padding: 0; 
     }
 
-    .profile-info-left {
+    .profileLeft{
         margin-top: 40px; 
+        width: 100%;
     }
+
 
     .user-profile-left { 
         text-align: center; 
@@ -41,8 +28,10 @@ $headerText = getHeader($role);
     }
 
     .user-profile-img {
-        width: 250px;
-        height: 250px; 
+        max-width: 50%; 
+        max-height: 50%; 
+        width: auto;
+        height: auto;
         border: 2px solid #ccc; 
         box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
         margin-left: 40px;
@@ -50,14 +39,14 @@ $headerText = getHeader($role);
 
     .username-left {
         text-align: center; 
-        font-size: 26px; 
+        font-size: 1.5vw; 
         font-family: 'Montserrat', sans-serif; 
     }
 
     .admin-text {
         color: limegreen;
         margin-bottom: 10px;
-        font-size: 25px;
+        font-size: 1.4vw;
         font-weight: bold;
         font-family: 'Montserrat', sans-serif; 
         display: flex; 
@@ -68,8 +57,10 @@ $headerText = getHeader($role);
     .edit-icon {
         display: inline-block;
         margin-left: 10px; 
-        width: 25px; 
-        height: 25px; 
+        max-width: 4%; 
+        max-height: 4%; 
+        width: auto;
+        height: auto;
         cursor: pointer;
     }
 
@@ -81,26 +72,32 @@ $headerText = getHeader($role);
         display: flex;
         flex-direction: column; 
         align-items: center; 
+        width: 100%;
     }
 
     .user-badge-container {
         display: flex;
         justify-content: center;
         align-items: center; 
-        margin-top: 80px; 
+        margin-top: 10%; 
+        max-width: 50%;
     }
 
     .user-badge {
-        width: 175px; 
-        height: 175px; 
-        margin: 0 20px; 
+        width: 50%; 
+        height: auto; 
+        max-width: 175px; 
+        max-height: 175px; 
+        margin: 0 5%; 
         filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
     }
 
     .empty-badge {
-        width: 175px; 
-        height: 175px; 
-        margin: 0 20px; 
+        width: 50%; 
+        height: auto; 
+        max-width: 175px; 
+        max-height: 175px; 
+        margin: 0 5%; 
         filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
         opacity: 0.5;
     }
@@ -130,7 +127,7 @@ $headerText = getHeader($role);
     }
 
 </style>
-<h2><?php echo $headerText; ?></h2>
+
 
 <div class="profile-wrapper">
     <div class="profileLeft">
