@@ -1,7 +1,5 @@
 <?php
-
 require '../modules/config.php';
-
 ?>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
@@ -10,21 +8,23 @@ require '../modules/config.php';
     .profile-wrapper-right {
         display: flex;
         height: 80vh; 
-        width: 60%; 
+        width: 100%; 
         margin: 0; 
         padding: 0; 
     }
 
-    .profile-info-right {
+    .profileRight{
         margin-top: 40px; 
+        width: 100%;
     }
 
 </style>
 
 
 <div class="profile-wrapper-right">
-    <div class="profile-info-right">
-        <h3>Additional Information</h3>
-        <p>Some additional details about the user can go here...</p>
+    <div class="profileRight">
+        <div class="profile-info-right">
+            <h3>Why's this so hard</h3>
+        </div>
     </div>
 </div>

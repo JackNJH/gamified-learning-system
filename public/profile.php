@@ -34,6 +34,11 @@ $headerText = getHeader($role);
             z-index: 2; 
         }
 
+        body {
+            overflow: hidden;
+        }
+
+
         .vertical-line {
             position: absolute;
             top: 0;
@@ -44,15 +49,32 @@ $headerText = getHeader($role);
             height: 100%; 
         }
         
+        .profile-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+        }
+
+        .profile-left-section {
+            width: 40%;
+        }
+
+        .profile-right-section {
+            width: 60%;
+        }
+        
     </style>
 </head>
 <body>
-    
     <h2><?php echo $headerText; ?></h2>
     <div class="vertical-line"></div>
-    <div>
-        <?php require_once '../components/profileLeft.php'; ?>
-        <!-- <?php require_once '../components/profileRight.php'; ?> -->
+    <div class="profile-container">
+        <div class="profile-left-section">
+            <?php require_once '../components/profileLeft.php'; ?>
+        </div>
+    </div>
+    <div class="profile-right-section">
+            <?php require_once '../components/profileRight.php'; ?>
     </div>
 </body>
 </html>

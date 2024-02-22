@@ -6,11 +6,11 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 <style>
-    .profile-wrapper {
+    .profile-wrapper-left {
         display: flex;
         justify-content: center; 
         height: 80vh; 
-        width: 40%; 
+        width: 100%; 
         margin: 0; 
         padding: 0; 
     }
@@ -20,7 +20,6 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
         width: 100%;
     }
 
-
     .user-profile-left { 
         text-align: center; 
         margin-bottom: 15px;
@@ -28,8 +27,8 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
     }
 
     .user-profile-img {
-        max-width: 50%; 
-        max-height: 50%; 
+        max-width: 35%; 
+        max-height: 35%; 
         width: auto;
         height: auto;
         border: 2px solid #ccc; 
@@ -129,7 +128,7 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
 </style>
 
 
-<div class="profile-wrapper">
+<div class="profile-wrapper-left">
     <div class="profileLeft">
         <div class="profile-info-left">
             <?php if ($role === 'admin'): ?>
