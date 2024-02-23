@@ -24,8 +24,15 @@
         $user_id = $_SESSION['user_id'];
         $username = $_SESSION['username'];
         $role=$_SESSION['role']; 
+
+        // Access teacher_id or student_id from session variables if needed
+        $teacher_id = isset($_SESSION['teacher_id']) ? $_SESSION['teacher_id'] : null;
+        $student_id = isset($_SESSION['student_id']) ? $_SESSION['student_id'] : null;
+
     }else{
         $role='';
     }
+
+    
 
 ?>

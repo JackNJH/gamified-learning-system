@@ -8,19 +8,41 @@ if (!$result) {
     die("Error fetching user data: " . mysqli_error($conn));
 }
 
+function get_teacher_classes_count($teacher_id, $conn) {
+    $query = "SELECT COUNT(*) AS class_count FROM class WHERE TeacherID = '$teacher_id'";
+    $result = mysqli_query($conn, $query);
+    
+    if (!$result) {
+        die("Error fetching teacher's classes: " . mysqli_error($conn));
+    }
+    
+    $row = mysqli_fetch_assoc($result);
+    return $row['class_count'];
+}
+
+function get_student_badges_count($student_id, $conn) {
+    $query = "SELECT COUNT(*) AS badge_count FROM studentbadge WHERE StudentID = '$student_id'";
+    $result = mysqli_query($conn, $query);
+    
+    if (!$result) {
+        die("Error fetching student's badges: " . mysqli_error($conn));
+    }
+    
+    $row = mysqli_fetch_assoc($result);
+    return $row['badge_count'];
+}
+
+
 $user_data = mysqli_fetch_assoc($result);
-
-
+$teacher_stats = get_teacher_classes_count($teacher_id, $conn);
+$student_stats = get_student_badges_count($student_id, $conn);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/h2_title.css">
@@ -52,7 +74,7 @@ $user_data = mysqli_fetch_assoc($result);
         font-family: 'Montserrat', sans-serif; 
         font-size: 1.1vw;
         flex: 0.5;
-        padding: 0.5vw; 
+        padding: 0.2vw; 
     }
 
     .value {
@@ -61,7 +83,7 @@ $user_data = mysqli_fetch_assoc($result);
         font-size: 1.1vw; 
         flex: 3; 
         border: 1px solid #ccc; 
-        padding: 0.5vw; 
+        padding: 0.2vw; 
         display: block;
         max-width: 80%;
         word-wrap: break-word;
@@ -69,8 +91,9 @@ $user_data = mysqli_fetch_assoc($result);
 
     .bio .value {
         line-height: 1.5; 
-        max-height: 16vw; /* Set a maximum height */
-        overflow-y: auto; /* Enable vertical overflow scrolling */
+        max-height: 13vw; 
+        height: 13vw;
+        overflow-y: auto; 
     }
 
     .change-password-link {
@@ -120,6 +143,15 @@ $user_data = mysqli_fetch_assoc($result);
             <div class="user-detail bio">
                 <span class="label">Bio:</span>
                 <span class="value"><?php echo nl2br($user_data['UserBio']); ?></span>
+            </div>
+            <div class="user-detail">
+            <?php if ($user_data['UserType'] == 'teacher'): ?>
+                <span class="label">Total Classes:</span>
+                <span class="value"><?php echo $teacher_stats; ?></span>
+            <?php elseif ($user_data['UserType'] == 'student'): ?>
+                <span class="label">Total Badges:</span>
+                <span class="value"><?php echo $student_stats; ?></span>
+            <?php endif; ?>
             </div>
         </div>
     </div>
