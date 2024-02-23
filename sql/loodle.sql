@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 21, 2024 at 02:01 PM
+-- Generation Time: Feb 23, 2024 at 11:20 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -273,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`UserID`, `UserName`, `UserEmail`, `UserTel`, `UserPass`, `UserType`, `UserBio`, `UserPFP`, `UserCreateDate`) VALUES
-('Adminidsimulator', 'imadmin', 'imadmin@gmail.com', '12345678', 'imadmin', 'admin', '', '../uploads/profilepic/Adminidsimulator/71f9cd8213812af6235984e995854923.jpg', '2024-02-21'),
+('Adminidsimulator', 'imadmin', 'imadmin@gmail.com', '12345678', 'imadmin', 'admin', 'Hellooo\r\nI\'m an admin hahaha\r\nTest123\r\nTEst\r\ntest\r\nTEst\r\nTEst\r\nis this too long\r\nhello\r\nam i there yet', '../uploads/profilepic/Adminidsimulator/cat2.jpg', '2024-02-21'),
 ('U65d5f960356df', 'teachergae', 'teachergae@gmail.com', '123123123', 'teachergae', 'teacher', '', '', '2024-02-21'),
 ('U65d5f97ece763', 'student123', 'student123@gmail.com', '32132132', 'student123', 'student', '', '', '2024-02-21');
 
