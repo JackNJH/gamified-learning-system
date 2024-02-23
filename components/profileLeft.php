@@ -112,16 +112,16 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
     }
 
     .badges-button {
-        padding: 10px 20px;
+        padding: 0.5vw 1vw;
         margin-top: 50px;
         background-color: bisque;
         color: black;
         border: none;
-        border-radius: 5px;
+        border-radius: 0.5vw;
         text-decoration: none;
         cursor: pointer;
         font-family: 'Poppins', sans-serif; 
-        font-size: 15;
+        font-size: 1vw;
     }
 
     .badges-button:hover {
