@@ -83,10 +83,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     input[type="text"] {
         width: 100%;
         padding: 0.5vw;
-        margin: 0.5vw 0 1.6vw 0;
+        margin: 0.6vw 0 1.8vw 0;
         border: 1px solid #ccc;
         box-sizing: border-box;
-        font-size: 16px;
+        font-size: 1vw;
     }
 
     input[type="password"]::placeholder,
@@ -162,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="cpassword">Confirm New Password:</label>
             <img src="../images/showpw.png" id="confirm-password" class="show-password" onclick="showPassword('cpassword', 'confirm-password')">
-            <input type="password" id="cpassword" name="cpassword" placeholder="Confirm your new password" required><br>
+            <input type="password" id="cpassword" name="cpassword" placeholder="Re-enter your new password" required><br>
 
             <button type="submit" id="confirmBtn" class="confirm-button">Confirm</button>
         </form>
