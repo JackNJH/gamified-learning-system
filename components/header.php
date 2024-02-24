@@ -138,6 +138,7 @@
             text-decoration: none;
             cursor: pointer;
             font-family: 'Poppins', sans-serif; 
+            transition: background-color 0.3s;
         }
 
         .button:hover {

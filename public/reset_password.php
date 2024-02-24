@@ -106,17 +106,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 10px;
+        margin-top: 20px;
     }
 
     .input-button {
-        width: 20%;
-        padding: 10px;
-        border: none;
+        width: 25%;
+        padding: 0.5vw 1vw;
         border-radius: 4px;
         background-color: orange;
         color: black;
         cursor: pointer;
+        border: none;
+        font-weight: bold;
+        font-size: 0.8vw;
+        transition: background-color 0.3s;
+        font-family: 'Poppins', sans-serif;
     }
 
     .input-button:hover {
@@ -124,28 +128,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     .password-input {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-        .password-input img {
-            margin-left: 10px;
-            margin-bottom: 10px;
-            width: 20px;
-            height: auto;
-            cursor: pointer;
-        }
+    .password-input img {
+        margin-left: 10px;
+        margin-bottom: 10px;
+        width: 20px;
+        height: auto;
+        cursor: pointer;
+    }
 
-        .show-password, .confirm-password {
-            width: 20px;
-            height: auto;
-        }
+    .show-password, .confirm-password {
+        width: 20px;
+        height: auto;
+    }
 
-        .show-password:hover,
-        .confirm-password:hover {
-            filter: drop-shadow(0 0 0 rgba(0, 0, 0, 1));
-        }
+    .show-password:hover,
+    .confirm-password:hover {
+        filter: drop-shadow(0 0 0 rgba(0, 0, 0, 1));
+    }
 
 </style>
 </head>
@@ -157,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form action="" method="post">
             <h3>Identity Verification</h3>
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required><br>
+            <input type="email" id="email" name="email" placeholder="Enter your Email" required><br>
 
             <label for="userID">Username:</label>
             <input type="text" id="username" name="username" placeholder="Enter your Username" required><br>
@@ -168,15 +172,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h3>Enter New Password</h3>
             <div class="password-input">
                 <label for="newPassword">New Password:</label>
-                <img src="../images/showpw.png" id="show-password" class="show-password" onclick="showPassword('show-password')">
+                <img src="../images/showpw.png" id="show-password" class="show-password" onclick="showPassword('password','show-password')">
             </div>
             <input type="password" id="password" name="password" placeholder="Enter your new password" required>
 
             <div class="password-input">
                 <label for="confirmPassword">Confirm Password:</label>
-                <img src="../images/showpw.png" id="confirm-password" class="confirm-password" onclick="showPassword('confirm-password')">
+                <img src="../images/showpw.png" id="confirm-password" class="confirm-password" onclick="showPassword('cpassword','confirm-password')">
             </div>
-            <input type="password" id="cpassword" name="cpassword" placeholder="Confirm your new password" required>
+            <input type="password" id="cpassword" name="cpassword" placeholder="Re-enter your new password" required>
 
             <div class="button-container">
                 <button type="button" onclick="goBack()" class="input-button">< BACK</button>

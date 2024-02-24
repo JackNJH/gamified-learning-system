@@ -183,15 +183,15 @@ include '../components/header.php';
 
             <div class="password-input">
                 <label for="password">Password:</label>
-                <img src="../images/showpw.png" id="show-password" class="show-password" onclick="showPassword('show-password')">
+                <img src="../images/showpw.png" id="show-password" class="show-password" onclick="showPassword('password','show-password')">
             </div>
-            <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
             <div class="password-input">
                 <label for="cpassword">Confirm Password:</label>
-                <img src="../images/showpw.png" id="confirm-password" class="confirm-password" onclick="showPassword('confirm-password')">
+                <img src="../images/showpw.png" id="confirm-password" class="confirm-password" onclick="showPassword('cpassword','confirm-password')">
             </div>
-            <input type="password" id="cpassword" name="cpassword" placeholder="Re-enter your Password" required>
+            <input type="password" id="cpassword" name="cpassword" placeholder="Re-enter your password" required>
 
             
             <label for="email">Email:</label>

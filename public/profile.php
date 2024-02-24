@@ -66,33 +66,22 @@ $headerText = getHeader($role);
     </style>
 </head>
 <body>
-    <h2><?php echo $headerText; ?></h2>
-    <div class="vertical-line"></div>
-    <div class="profile-container">
-        <div class="profile-left-section">
-            <?php require_once '../components/profileLeft.php'; ?>
-        </div>
+<h2><?php echo $headerText; ?></h2>
+<div class="vertical-line"></div>
+<div class="profile-container">
+    <div class="profile-left-section">
+        <?php require_once '../components/profileLeft.php'; ?>
     </div>
-    <div class="profile-right-section">
-            <?php require_once '../components/profileRight.php'; ?>
-    </div>
+</div>
+<div class="profile-right-section">
+    <?php
+    if (isset($_GET['action']) && $_GET['action'] === 'changePassword') {
+        require_once '../components/changePassword.php';
+    } else {
+        require_once '../components/profileRight.php';
+    }
+    ?>
+</div>
 
-
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("changePasswordLink").addEventListener("click", function(event) {
-            event.preventDefault(); 
-
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "../components/changePassword.php", true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    document.querySelector(".profile-right-section").innerHTML = xhr.responseText;
-                }
-            };
-            xhr.send();
-        });
-    });
-    </script>
 </body>
 </html>

@@ -132,8 +132,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="login-container">
         <a href="index.php"><img src="../images/logo.png" width="35%"></a>
         <form method="post">
-            <input type="email" name="email" id="email" placeholder="Email" required>
-            <input type="password" name="password" id="password" placeholder="Password" required>
+        <input type="email" name="email" id="email" placeholder="Email" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : ''; ?>" required>
+        <input type="password" name="password" id="password" placeholder="Password" value="<?php echo isset($_COOKIE['password']) ? $_COOKIE['password'] : ''; ?>" required>
             <div class="login-options">
                 <div>
                     <input type="checkbox" id="remember" name="remember"><label for="remember" class="remember">Remember me?</label>

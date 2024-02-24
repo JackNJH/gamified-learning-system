@@ -122,10 +122,11 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
         cursor: pointer;
         font-family: 'Poppins', sans-serif; 
         font-size: 1vw;
+        transition: background-color 0.3s;
     }
 
     .badges-button:hover {
-        background-color: chocolate;
+        background-color: darkorange;
         font-weight: bold;
         color: white;
     }

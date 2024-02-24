@@ -1,12 +1,6 @@
-function showPassword(button) {
-    var inputField;
-    var showBtn = document.getElementById(button);
-
-    if (button === "show-password") {
-        inputField = document.getElementById("password");
-    } else if (button === "confirm-password") {
-        inputField = document.getElementById("cpassword");
-    }
+function showPassword(inputId, buttonId) {
+    var inputField = document.getElementById(inputId);
+    var showBtn = document.getElementById(buttonId);
 
     if (inputField.type === "password") {
         inputField.type = "text";
@@ -18,5 +12,6 @@ function showPassword(button) {
         showBtn.title = "Click to show password";
     }
 }
+
 
 

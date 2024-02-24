@@ -146,10 +146,11 @@ $student_stats = get_student_badges_count($student_id, $conn);
         cursor: pointer;
         font-family: 'Poppins', sans-serif; 
         font-size: 1vw;
+        transition: background-color 0.3s;
     }
 
     .save-button:hover {
-        background-color: chocolate;
+        background-color: darkorange;
         font-weight: bold;
         color: white;
     }
@@ -202,7 +203,7 @@ $student_stats = get_student_badges_count($student_id, $conn);
 <button id="saveChangesBtn" class="save-button" style="display: none;">Save Changes</button>
 
 <div class="change-password-link">
-    <a href="#" id="changePasswordLink">CHANGE PASSWORD?</a>
+    <a href="profile.php?action=changePassword" id="changePasswordLink">CHANGE PASSWORD?</a>
 </div>
 
 <script src="../js/profileEdit.js"></script>
