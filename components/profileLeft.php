@@ -21,7 +21,7 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
     }
 
     .profileLeft{
-        margin-top: 40px; 
+        margin-top: 2vw; 
         width: 100%;
     }
 
@@ -38,7 +38,7 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
         height: auto;
         border: 2px solid #ccc; 
         box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
-        margin-left: 40px;
+        margin-left: 2vw;
     }
 
     .username-left {
@@ -49,7 +49,7 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
 
     .admin-text {
         color: limegreen;
-        margin-bottom: 10px;
+        margin-bottom: 0.5vw;
         font-size: 1.4vw;
         font-weight: bold;
         font-family: 'Montserrat', sans-serif; 
