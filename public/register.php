@@ -83,7 +83,9 @@ include '../components/header.php';
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 90vh; 
+        padding-top: 4vw;
+        padding-bottom: 4vw;
+        overflow: auto;
     }
 
     .register-container {
@@ -94,7 +96,7 @@ include '../components/header.php';
         background-color: #fff;
         max-width: 400px;
         width: 100%;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2)
     }
 
     label {

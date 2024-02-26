@@ -59,7 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 90vh; 
+        padding-top: 4vw;
+        padding-bottom: 4vw;
+        overflow: auto;
     }
 
     .reset-password-container {

@@ -4,16 +4,16 @@
     }
 
     .login-alert {
-        padding: 20px;
+        padding: 1vw;
         background-color: #f44336;
         color: white;
-        font-size: 1.5rem; 
+        font-size: 1vw; 
         width: 50%; 
-        max-width: 400px; 
+        max-width: 20vw; 
         margin: 0 auto;
-        margin-top: 20px; 
+        margin-top: 1vw; 
         position: fixed;
-        top: 100px;
+        top: 5vw;
         left: 50%; 
         transform: translate(-50%); 
         z-index: 9999; 
@@ -22,11 +22,11 @@
 
     .login-alert-closebtn {
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 0.5vw;
+        right: 0.5vw;
         color: white;
         font-weight: bold;
-        font-size: 1.5rem; 
+        font-size: 1rem; 
         cursor: pointer;
         transition: color 0.3s;
     }
