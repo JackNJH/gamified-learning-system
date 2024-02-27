@@ -1,24 +1,12 @@
 <?php
-include 'C:\wamp64\www\gamified-learning-system-master\components\header.php'; // Header
-if ($role == ''){
-    header("C:\wamp64\www\gamified-learning-system-master\components\index.php");
-    die;
-}
-
-function getHeader($role) {
-    switch ($role) {
-        case 'admin':
-            return 'Admin View Profile';
-        case 'teacher':
-            return 'Teacher View Profile';
-        case 'student':
-            return 'Student View Profile';
-        default:
-            return 'View Profile';
+    require '../modules/config.php';
+    if ($role !='teacher'){
+        header('Location: ../index.php');
+        die;
     }
-}
 
-$headerText = getHeader($role);
+    include '../components/header.php'; // Header
+
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +14,7 @@ $headerText = getHeader($role);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student menu</Menu></title>
+    <title>Student menu</title>
     <link rel="stylesheet" href="../css/studentpage.css">
     <style>
         .options{

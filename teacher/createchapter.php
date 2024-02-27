@@ -1,24 +1,12 @@
 <?php
-include 'C:\wamp64\www\gamified-learning-system-master\components\header.php'; // Header
-if ($role == ''){
-    header("C:\wamp64\www\gamified-learning-system-master\components\index.php");
-    die;
-}
-
-function getHeader($role) {
-    switch ($role) {
-        case 'admin':
-            return 'Admin View Profile';
-        case 'teacher':
-            return 'Teacher View Profile';
-        case 'student':
-            return 'Student View Profile';
-        default:
-            return 'View Profile';
+    require '../modules/config.php';
+    if ($role !='teacher'){
+        header('Location: ../index.php');
+        die;
     }
-}
 
-$headerText = getHeader($role);
+    include '../components/header.php'; // Header
+
 ?>
 
 <!DOCTYPE html>
@@ -77,14 +65,15 @@ h2 {
 .class-form button {
     padding: 0.7rem;
     background-color: orange;
+    font-family: 'Montserrat', sans-serif; 
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     width: 15rem;
     justify-self: end;
-
 }
+
 .class-form button[type="cancel"] {
     justify-self: start; 
     margin-right: auto;
