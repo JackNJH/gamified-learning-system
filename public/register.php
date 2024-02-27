@@ -83,8 +83,8 @@ include '../components/header.php';
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 4vw;
-        padding-bottom: 4vw;
+        padding-top: 3vw;
+        padding-bottom: 3vw;
         overflow: auto;
     }
 

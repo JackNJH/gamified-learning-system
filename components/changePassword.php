@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 26vw;
+        height: 30vw;
     }
 
     .container {
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     input[type="text"] {
         width: 100%;
         padding: 0.5vw;
-        margin: 0.6vw 0 1.8vw 0;
+        margin: 0.6vw 0 2.2vw 0;
         border: 1px solid #ccc;
         box-sizing: border-box;
         font-size: 1vw;

@@ -21,7 +21,7 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
     }
 
     .profileLeft{
-        margin-top: 2vw; 
+        margin-top: 1vw; 
         width: 100%;
     }
 
