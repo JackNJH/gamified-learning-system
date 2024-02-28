@@ -1,15 +1,19 @@
 <?php
 require '../modules/config.php';    
 
-$selectedBadges = [];
 if ($role === 'student') {
 
-    $query = "SELECT SelectedBadge1, SelectedBadge2, SelectedBadge3 FROM student WHERE StudentID = $student_id";
-    $result = mysqli_query($conn, $query);
-    if ($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $selectedBadges = array_filter([$row['SelectedBadge1'], $row['SelectedBadge2'], $row['SelectedBadge3']]);
+    function getBadgeInfo($conn, $badgeID) {
+        $sql = "SELECT * FROM badges WHERE BadgeID = $badgeID";
+        $result = mysqli_query($conn, $sql);
+        return mysqli_fetch_assoc($result);
     }
+    
+    // Selected Badges
+    $sql = "SELECT SelectedBadge1, SelectedBadge2, SelectedBadge3 FROM student WHERE StudentID = '$student_id'";
+    $result = mysqli_query($conn, $sql);
+    $selectedBadges = mysqli_fetch_assoc($result);
+
 }
 
 
@@ -125,7 +129,7 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
 
     .badges-button {
         padding: 0.5vw 1vw;
-        margin-top: 50px;
+        margin-top: 2.6vw;
         background-color: bisque;
         color: black;
         border: none;
@@ -182,24 +186,14 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
             <?php endif; ?>
             <?php if ($role === 'student'): ?>
                 <div class="user-badge-container">
-                    <?php foreach ($selectedBadges as $badgeID): ?>
-                        <?php
-                        // Fetch badge details for each selected badge
-                        $badgeQuery = "SELECT BadgePic FROM badges WHERE BadgeID = $badgeID";
-                        $badgeResult = mysqli_query($conn, $badgeQuery);
-                        if ($badgeResult && mysqli_num_rows($badgeResult) > 0) {
-                            $badgeRow = mysqli_fetch_assoc($badgeResult);
-                            $badgePic = $badgeRow['BadgePic'];
-                        } else {
-                            // Default badge picture if badge not found
-                            $badgePic = "../images/badgePlaceholder.png";
-                        }
-                        ?>
-                        <img class="user-badge" src="../images/<?php echo $badgePic; ?>" alt="Badge">
+                    <?php foreach ($selectedBadges as $badgeKey => $badgeID): ?>
+                        <?php if (!is_null($badgeID)): ?>
+                            <?php $badgeInfo = getBadgeInfo($conn, $badgeID); ?>
+                            <img class="user-badge" src="<?php echo $badgeInfo['BadgePic']; ?>" alt="<?php echo $badgeInfo['BadgeName']; ?>">
+                        <?php else: ?>
+                            <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                        <?php endif; ?>
                     <?php endforeach; ?>
-                    <?php for ($i = count($selectedBadges); $i < 3; $i++): ?>
-                        <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
-                    <?php endfor; ?>
                 </div>
             <?php endif; ?>
             
