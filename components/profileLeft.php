@@ -1,6 +1,18 @@
 <?php
 require '../modules/config.php';    
 
+$selectedBadges = [];
+if ($role === 'student') {
+
+    $query = "SELECT SelectedBadge1, SelectedBadge2, SelectedBadge3 FROM student WHERE StudentID = $student_id";
+    $result = mysqli_query($conn, $query);
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $selectedBadges = array_filter([$row['SelectedBadge1'], $row['SelectedBadge2'], $row['SelectedBadge3']]);
+    }
+}
+
+
 $userProfilePicture = getUserProfilePicture($conn, $user_id);
 ?>
 
@@ -27,7 +39,7 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
 
     .user-profile-left { 
         text-align: center; 
-        margin-bottom: 15px;
+        margin-bottom: 0.8vw;
         position: relative;
     }
 
@@ -107,7 +119,7 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
     }
 
     .user-badge:hover {
-        transform: scale(1.1); 
+        transform: scale(1.05); 
         transition: transform 0.3s ease; 
     }
 
@@ -170,9 +182,24 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
             <?php endif; ?>
             <?php if ($role === 'student'): ?>
                 <div class="user-badge-container">
-                    <img class="user-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
-                    <img class="user-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
-                    <img class="user-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                    <?php foreach ($selectedBadges as $badgeID): ?>
+                        <?php
+                        // Fetch badge details for each selected badge
+                        $badgeQuery = "SELECT BadgePic FROM badges WHERE BadgeID = $badgeID";
+                        $badgeResult = mysqli_query($conn, $badgeQuery);
+                        if ($badgeResult && mysqli_num_rows($badgeResult) > 0) {
+                            $badgeRow = mysqli_fetch_assoc($badgeResult);
+                            $badgePic = $badgeRow['BadgePic'];
+                        } else {
+                            // Default badge picture if badge not found
+                            $badgePic = "../images/badgePlaceholder.png";
+                        }
+                        ?>
+                        <img class="user-badge" src="../images/<?php echo $badgePic; ?>" alt="Badge">
+                    <?php endforeach; ?>
+                    <?php for ($i = count($selectedBadges); $i < 3; $i++): ?>
+                        <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                    <?php endfor; ?>
                 </div>
             <?php endif; ?>
             
