@@ -22,7 +22,7 @@ $selectedBadges = mysqli_fetch_assoc($result);
 
 
 // Earned Badges
-$query = "SELECT badges.BadgeID, badges.BadgeName, badges.BadgePic
+$query = "SELECT badges.BadgeID, badges.BadgeName, badges.BadgePic, studentbadge.EarnedBadgeDate
           FROM studentbadge
           INNER JOIN badges ON studentbadge.BadgeID = badges.BadgeID
           WHERE studentbadge.StudentID = '$student_id'";
@@ -195,6 +195,14 @@ $resultEarned = mysqli_query($conn, $query);
             overflow: auto;
         }
 
+        .profile-right-section h3 {
+            font-size: 1vw;
+            margin-bottom: 1vw;
+            text-align: center;
+            font-family: 'Poppins', sans-serif; 
+            font-weight: normal;
+        }
+
         .profileRight {
             width: 100%;
             max-width: 50vw; 
@@ -208,17 +216,42 @@ $resultEarned = mysqli_query($conn, $query);
             gap: 4vw;
         }
 
-        .earned-badges img {
-            width: 50%; 
+        .earned-badge-container {
+            position: relative;
+            display: flex;
+        }
+
+        .earned-badge {
+            width: 100%; 
             height: auto;
             max-width: 175px; 
             max-height: 175px; 
             filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+            transition: transform 0.3s ease;
         }
 
-        .earned-badges img:hover {
-            transform: scale(1.05); 
-            transition: transform 0.3s ease; 
+        .earned-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .badge-info {
+            display: none;
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            width: max-content;
+            font-family: 'Montserrat', sans-serif; 
+        }
+
+        .earned-badge-container:hover .badge-info {
+            display: block;
         }
 
     </style>
@@ -269,12 +302,17 @@ $resultEarned = mysqli_query($conn, $query);
     <div class="profile-right-section">
         <div class="profile-wrapper-right">
             <div class="profileRight">
+                <h3>(Click to equip badges!)</h3>
                 <div class="earned-badges">
-                    <?php
-                    while ($row = mysqli_fetch_assoc($resultEarned)) {
-                        echo '<img class="earned-badge" src="' . $row['BadgePic'] . '" alt="' . $row['BadgeName'] . '" data-badge-id="' . $row['BadgeID'] . '">';
-                    }
-                    ?>
+                    <?php while ($row = mysqli_fetch_assoc($resultEarned)): ?>
+                        <div class="earned-badge-container">
+                            <img class="earned-badge" src="<?php echo $row['BadgePic']; ?>" alt="<?php echo $row['BadgeName']; ?>" data-badge-id="<?php echo $row['BadgeID']; ?>">
+                            <div class="badge-info">
+                                <p><strong>Badge Name:</strong> <?php echo $row['BadgeName']; ?></p>
+                                <p><strong>Date Earned:</strong> <?php echo $row['EarnedBadgeDate']; ?></p>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
                 </div>
             </div>
         </div>
