@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 23, 2024 at 11:20 AM
+-- Generation Time: Feb 28, 2024 at 09:06 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -67,7 +67,15 @@ CREATE TABLE IF NOT EXISTS `badges` (
   `ClassID` int NOT NULL,
   PRIMARY KEY (`BadgeID`),
   KEY `ClassID` (`ClassID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `badges`
+--
+
+INSERT INTO `badges` (`BadgeID`, `BadgeName`, `BadgeReq`, `BadgePic`, `ClassID`) VALUES
+(1, 'test1', 'test', '../uploads/classes/1/783px-Test-Logo.svg.png', 1),
+(3, 'test2', 'sadwqdasd', '../uploads/classes/2/588438128cc558ce11bb218fc760757c.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -98,11 +106,20 @@ CREATE TABLE IF NOT EXISTS `class` (
   `ClassDashboard` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `ClassDiff` varchar(20) NOT NULL,
   `ClassMaxPoints` int NOT NULL,
-  `ClassCode` int NOT NULL,
+  `ClassPrivacy` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `ClassCode` int DEFAULT NULL,
   `ClassCreateDate` date NOT NULL,
   PRIMARY KEY (`ClassID`),
   KEY `TeacherID` (`TeacherID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `class`
+--
+
+INSERT INTO `class` (`ClassID`, `TeacherID`, `ClassName`, `ClassDesc`, `ClassDashboard`, `ClassDiff`, `ClassMaxPoints`, `ClassPrivacy`, `ClassCode`, `ClassCreateDate`) VALUES
+(1, 'T65d5f96036291', 'test', 'test class', 'blabla', 'hard', 100, 'private', 1234, '2024-02-28'),
+(2, 'T65d5f96036291', 'test2', 'dsadasad', '', 'easy', 100, 'public', NULL, '2024-02-28');
 
 -- --------------------------------------------------------
 
@@ -181,6 +198,9 @@ DROP TABLE IF EXISTS `student`;
 CREATE TABLE IF NOT EXISTS `student` (
   `StudentID` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `UserID` varchar(30) NOT NULL,
+  `SelectedBadge1` int NOT NULL,
+  `SelectedBadge2` int NOT NULL,
+  `SelectedBadge3` int NOT NULL,
   PRIMARY KEY (`StudentID`),
   KEY `UserID` (`UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -189,8 +209,8 @@ CREATE TABLE IF NOT EXISTS `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`StudentID`, `UserID`) VALUES
-('S65d5f97ecec69', 'U65d5f97ece763');
+INSERT INTO `student` (`StudentID`, `UserID`, `SelectedBadge1`, `SelectedBadge2`, `SelectedBadge3`) VALUES
+('S65d5f97ecec69', 'U65d5f97ece763', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -207,7 +227,15 @@ CREATE TABLE IF NOT EXISTS `studentbadge` (
   PRIMARY KEY (`EarnedBadgeID`),
   KEY `BadgeID` (`BadgeID`),
   KEY `StudentID` (`StudentID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `studentbadge`
+--
+
+INSERT INTO `studentbadge` (`EarnedBadgeID`, `EarnedBadgeDate`, `BadgeID`, `StudentID`) VALUES
+(1, '2024-02-28', 1, 'S65d5f97ecec69'),
+(3, '2024-02-28', 3, 'S65d5f97ecec69');
 
 -- --------------------------------------------------------
 
@@ -273,9 +301,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`UserID`, `UserName`, `UserEmail`, `UserTel`, `UserPass`, `UserType`, `UserBio`, `UserPFP`, `UserCreateDate`) VALUES
-('Adminidsimulator', 'imadmin', 'imadmin@gmail.com', '12345678', 'imadmin', 'admin', 'Hellooo\r\nI\'m an admin hahaha\r\nTest123\r\nTEst\r\ntest\r\nTEst\r\nTEst\r\nis this too long\r\nhello\r\nam i there yet', '../uploads/profilepic/Adminidsimulator/cat2.jpg', '2024-02-21'),
+('Adminidsimulator', 'imadmin', 'imadmin@gmail.com', '12345678', 'imadmin', 'admin', 'I\'m an admin hahaha\r\n', '../uploads/profilepic/Adminidsimulator/cat2.jpg', '2024-02-21'),
 ('U65d5f960356df', 'teachergae', 'teachergae@gmail.com', '123123123', 'teachergae', 'teacher', '', '', '2024-02-21'),
-('U65d5f97ece763', 'student123', 'student123@gmail.com', '32132132', 'student123', 'student', '', '', '2024-02-21');
+('U65d5f97ece763', 'student123', 'student123@gmail.com', '32132132', 'student123', 'student', 'Hi<br>How\'s life<br><br>', '', '2024-02-21');
 
 --
 -- Constraints for dumped tables
