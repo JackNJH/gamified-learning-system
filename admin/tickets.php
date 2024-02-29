@@ -72,8 +72,8 @@
         font-size: 0.9vw;
     }
 
-    .ticket-id { width: 15%; }
-    .category { width: 30%; }
+    .ticket-id { width: 12%; }
+    .category { width: 33%; }
     .student-name { width: 20%; }
     .ticket-date { width: 20%; }
     .status { width: 15%; }
@@ -88,6 +88,17 @@
         padding: 0.2vw;
         font-size: 0.9vw;
         font-family: 'Poppins', sans-serif;
+    }
+
+    .ticket-link {
+        color: chocolate; 
+        text-decoration: underline; 
+        cursor: pointer; 
+    }
+
+    .ticket-link:hover {
+        color: orange; 
+        font-weight: bold;
     }
 </style>
 </head>
@@ -122,7 +133,7 @@
                     <?php
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo "<tr>";
-                            echo "<td>".$row['TicketID']."</td>";
+                            echo "<td><a href='ticketsReply.php?ticketID=".$row['TicketID']."' class='ticket-link'>".$row['TicketID']."</a></td>";
                             echo "<td>".$row['Category']."</td>";
                             echo "<td>".$row['StudentName']."</td>";
                             echo "<td>".$row['TicketDate']."</td>";
