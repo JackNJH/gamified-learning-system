@@ -21,7 +21,7 @@
     $registrationQuery = "SELECT UserName, UserType, UserCreateDate FROM user ORDER BY UserCreateDate DESC";
     $registrationResult = mysqli_query($conn, $registrationQuery);
 
-    $latest_ticket_query = "SELECT * FROM tickets ORDER BY TicketID DESC LIMIT 1";
+    $latest_ticket_query = "SELECT * FROM tickets ORDER BY TicketDate DESC LIMIT 1";
     $latest_ticket_result = mysqli_query($conn, $latest_ticket_query);
     $latest_ticket = mysqli_fetch_assoc($latest_ticket_result);
 
