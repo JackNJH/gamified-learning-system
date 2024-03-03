@@ -113,6 +113,7 @@
             <select id="status-filter">
                 <option value="">Filter</option>
                 <option value="open">Open</option>
+                <option value="pending">Pending</option>
                 <option value="closed">Closed</option>
             </select>
         </div>

@@ -180,13 +180,13 @@
         <div class="section manage-users">
             <h3>Manage Users</h3>
             <div class="stat">Total Users: <?php echo $totalUsers; ?></div>
-            <a href="search.php"><button class="continue-button">Continue</button></a>
+            <a href="search.php?type=user"><button class="continue-button">Continue</button></a>
         </div>
 
         <div class="section manage-classes">
             <h3>Manage Classes</h3>
             <div class="stat">Total Classes: <?php echo $totalClasses; ?></div>
-            <a href="search.php"><button class="continue-button">Continue</button></a>
+            <a href="search.php?type=class"><button class="continue-button">Continue</button></a>
         </div>
 
         <div class="section new-tickets">
