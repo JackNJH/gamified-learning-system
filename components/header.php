@@ -158,7 +158,7 @@
         <?php if ($role): ?>
             <?php if ($role === 'admin'): ?>
                 <a href="../admin/tickets.php" class="button">Tickets</a>
-                <a href="../admin/search.php" class="button">Search</a>
+                <a href="../admin/search.php?type=user" class="button">Search</a>
             <?php elseif ($role === 'teacher'): ?>
                 <a href="../teacher/myclasses.php" class="button">My Classes</a>
             <?php elseif ($role === 'student'): ?>

@@ -7,7 +7,7 @@
 
     include '../components/header.php'; // Header
 
-    $userQuery = "SELECT UserID, UserName, UserType, UserBio, UserPFP, UserCreateDate FROM user WHERE UserType != 'admin'";
+    $userQuery = "SELECT UserID, UserName, UserType, UserPFP, UserCreateDate FROM user WHERE UserType != 'admin'";
     $userResult = mysqli_query($conn, $userQuery);
     
 
@@ -26,6 +26,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../css/h2_title.css">
+<title>Search</title>
 <head>
     <style>
         .page-container {
@@ -58,7 +59,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 1vw; 
-            
+            transition: background-color 0.3s, color 0.3s, font-size 0.3s;
         }
 
         .menu button.active {
@@ -66,7 +67,11 @@
             color: black;
             font-family: 'Poppins', sans-serif;
             font-size: 1vw; 
-            
+        }
+
+        .menu button:hover { 
+            background-color: #ffdead; 
+            font-size: 1.1vw;
         }
 
         .content {
@@ -96,78 +101,140 @@
             width: fit-content;
             font-size: 1vw;
         }
+
+        .table-container { 
+            padding: 1vw;
+            padding-left: 3vw;
+            padding-right: 3vw;
+            overflow-y: auto;
+            max-height: 50vh;
+        }
+
+        table {
+            width: 100%; 
+            border-collapse: collapse;
+            font-family: 'Montserrat', sans-serif;
+            white-space: nowrap;
+        }
+
+        td {
+            text-align: left;
+            border: 1px solid black;
+        }
+
+        tr {
+            display: block; 
+            background-color: #f9f9f9; 
+            margin-bottom: 1vw; 
+        }
+
+        .profile-pic {
+            width: 12% !important;
+            width: auto; 
+            text-align: center;
+        }
+
+        .profile-pic img {
+            max-width: 100%; 
+            height: auto; 
+        }
+
+        .user-data {
+            font-size: 1vw; 
+        }
+
+        .user-data span {
+            display: block; 
+            padding-left: 0.8vw;
+        }
+
+        .username-label {
+            font-size: 1.2vw; 
+            font-weight: bold;
+        }
+
+        .other-data {
+            font-size: 0.8vw;
+        }
+
+        .user-type {
+            text-align: center; /* Center the text */
+            font-size: 1vw;
+            font-weight: bold;
+        }
+
+        .user-type.student {
+            color: blue; 
+        }
+
+        .user-type.teacher {
+            color: green; 
+        }
+
     </style>
 </head>
 <body>
-    <h2>Search</h2>
-    <div class="page-container">
-        <div class="section-container">
-            <div class="menu">
-                <button id="user-btn" class="active" onclick="showContent('user')">Users</button>
-                <button id="class-btn" onclick="showContent('class')">Classes</button>
-            </div>
+<h2>Search</h2>
+<div class="page-container">
+    <div class="section-container">
+        <div class="menu">
+            <button id="user-btn" class="active" onclick="showContent('user')">Users</button>
+            <button id="class-btn" onclick="showContent('class')">Classes</button>
+        </div>
 
-            <!-- User Content -->
-            <div class="content <?php echo ($_GET['type'] == 'user' ? 'active' : ''); ?>" id="user-content">
-                <div class="search-container">
-                    <input type="text" class="user-content-search-input" id="user-content-search-input" placeholder="Search users..." onkeyup="searchFunction('user')" autofocus>
-                    <button class="search-button" >🔍</button>
-                </div><br>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>User ID</th>
-                                <th>User Name</th>
-                                <th>User Type</th>
-                                <th>User Bio</th>
-                                <th>User Profile Picture</th>
-                                <th>Creation Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                while ($row = mysqli_fetch_assoc($userResult)) {
-                                    echo "<tr>";
-                                    echo "<td>{$row['UserID']}</td>";
-                                    echo "<td>{$row['UserName']}</td>";
-                                    echo "<td>{$row['UserType']}</td>";
-                                    echo "<td>{$row['UserBio']}</td>";
-                                    echo "<td><img src='{$row['UserPFP']}' alt='Profile Picture' width='100'></td>";
-                                    echo "<td>{$row['UserCreateDate']}</td>";
-                                    echo "</tr>";
-                                }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-
-            <!-- Class Content -->
-            <div class="content <?php echo ($_GET['type'] == 'class' ? 'active' : ''); ?>" id="class-content">
-                <div class="search-container">
-                    <input type="text" class="class-content-search-input" id="class-content-search-input" placeholder="Search classes..." onkeyup="searchFunction('class')" autofocus>
-                    <button class="search-button" >🔍</button>
-                </div><br>
+        <!-- User Content -->
+        <div class="content <?php echo ($_GET['type'] == 'user' ? 'active' : ''); ?>" id="user-content">
+            <div class="search-container">
+                <input type="text" class="user-content-search-input" id="user-content-search-input" placeholder="Search users..." onkeyup="searchFunction('user')" autofocus>
+                <button class="search-button" >🔍</button>
+            </div><br>
+            <div class="table-container">
+                <table>
+                    <tbody>
+                        <?php
+                            while ($row = mysqli_fetch_assoc($userResult)) {
+                                echo "<tr>";
+                                echo "<td class='profile-pic'><img src='" . (!empty($row['UserPFP']) ? $row['UserPFP'] : '../images/guestPFP.png') . "' alt='Profile Picture'></td>";
+                                echo "<td class='user-data'>";
+                                echo "<span class='username-label'>{$row['UserName']}</span><br>"; 
+                                echo "<span class='other-data'><b>ID:</b> {$row['UserID']}<br>"; 
+                                echo "<b>Created Date:</b> {$row['UserCreateDate']}<br></span>"; 
+                                echo "</td>";
+                                echo "<td class='user-type " . ($row['UserType'] == 'student' ? 'student' : 'teacher') . "'>{$row['UserType']}</td>";
+                                echo "</tr>";
+                            }
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
 
-    <script>
-        function showContent(contentType) {
-            if (contentType === 'user') {
-                document.getElementById('user-content').classList.add('active');
-                document.getElementById('class-content').classList.remove('active');
-                document.getElementById('user-btn').classList.add('active');
-                document.getElementById('class-btn').classList.remove('active');
-            } else if (contentType === 'class') {
-                document.getElementById('user-content').classList.remove('active');
-                document.getElementById('class-content').classList.add('active');
-                document.getElementById('user-btn').classList.remove('active');
-                document.getElementById('class-btn').classList.add('active');
-            }
+
+        <!-- Class Content -->
+        <div class="content <?php echo ($_GET['type'] == 'class' ? 'active' : ''); ?>" id="class-content">
+            <div class="search-container">
+                <input type="text" class="class-content-search-input" id="class-content-search-input" placeholder="Search classes..." onkeyup="searchFunction('class')" autofocus>
+                <button class="search-button" >🔍</button>
+            </div><br>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showContent(contentType) {
+        if (contentType === 'user') {
+            document.getElementById('user-content').classList.add('active');
+            document.getElementById('class-content').classList.remove('active');
+            document.getElementById('user-btn').classList.add('active');
+            document.getElementById('class-btn').classList.remove('active');
+        } else if (contentType === 'class') {
+            document.getElementById('user-content').classList.remove('active');
+            document.getElementById('class-content').classList.add('active');
+            document.getElementById('user-btn').classList.remove('active');
+            document.getElementById('class-btn').classList.add('active');
         }
-    </script>
+    }
+</script>
+<script src="../js/search.js"></script>
 </body>
 </html>
