@@ -157,13 +157,13 @@
     <div class="buttons">
         <?php if ($role): ?>
             <?php if ($role === 'admin'): ?>
-                <a href="tickets.php" class="button">Tickets</a>
-                <a href="search.php" class="button">Search</a>
+                <a href="../admin/tickets.php" class="button">Tickets</a>
+                <a href="../admin/search.php" class="button">Search</a>
             <?php elseif ($role === 'teacher'): ?>
-                <a href="myclasses.php" class="button">My Classes</a>
+                <a href="../teacher/myclasses.php" class="button">My Classes</a>
             <?php elseif ($role === 'student'): ?>
-                <a href="searchclasses.php" class="button">Search Classes</a>
-                <a href="helpme.php" class="button">Help Me</a>
+                <a href="../student/searchclasses.php" class="button">Search Classes</a>
+                <a href="../student/helpme.php" class="button">Help Me</a>
             <?php endif; ?>
         <?php endif; ?>
     </div>
