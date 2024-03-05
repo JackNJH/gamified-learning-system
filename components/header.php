@@ -93,7 +93,7 @@
             display: none;
             position: absolute;
             background-color: #f9f9f9;
-            min-width: 100px;
+            min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
             right: 0;
@@ -172,9 +172,14 @@
             <?php if ($role): ?>
                 <div class="dropdown-content">
                     <a href="../public/profile.php"><img src="../images/profileicon.png" alt="Profile">Profile</a>
+                    <a href="../public/contactUs.php"><img src="../images/phoneIcon.png" alt="Contact Us">Contact us</a>
                     <a href="../modules/logout.php"><img src="../images/logout.png" alt="Profile">Logout</a>
                 </div>
-            <?php endif; ?>
+                <?php else: ?>
+                    <div class="dropdown-content">
+                        <a href="../public/contactUs.php"><img src="../images/phoneIcon.png" alt="Contact Us">Contact us</a>
+                    </div>
+                <?php endif; ?>
         </div>
         <div class="user-profile">
             <?php if ($role): ?>

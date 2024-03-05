@@ -210,7 +210,7 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
             <?php endif; ?>
             
             <?php if ($role === 'student'): ?>
-                <button class="badges-button" onclick="location.href='../public/editBadges.php'" type="button">Badges</button>
+                <button class="badges-button" onclick="location.href='../components/editBadges.php'" type="button">Badges</button>
             <?php endif; ?>
             
         </div>
