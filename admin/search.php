@@ -11,11 +11,11 @@
     $userResult = mysqli_query($conn, $userQuery);
     
 
-    $productQuery = "SELECT c.ClassID, c.ClassName, c.ClassDesc, c.ClassDiff, c.ClassMaxPoints, c.ClassCreateDate, t.TeacherID, u.UserID, u.UserName
+    $classQuery = "SELECT c.ClassID, c.ClassName, c.ClassDiff, c.ClassDashboard, c.ClassCreateDate, t.TeacherID, u.UserID, u.UserName
                         FROM class c
                         JOIN teacher t ON c.TeacherID = t.TeacherID
                         JOIN user u ON t.UserID = u.UserID";
-    $productResult = mysqli_query($conn, $productQuery);
+    $classResult = mysqli_query($conn, $classQuery);
 
 ?>
 
@@ -86,6 +86,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+
         }
         input.user-content-search-input, input.class-content-search-input{
             width: 20vw;
@@ -93,13 +94,8 @@
             height: 2vw;
             min-height: 2vw;
             font-family: 'Poppins', sans-serif;
-        }
-        .search-button{
-            cursor: pointer;
-            height: 2vw;
-            min-width: 2vw;
-            width: fit-content;
-            font-size: 1vw;
+            border-radius: 1vw;
+            padding-left: 1vw;
         }
 
         .table-container { 
@@ -112,53 +108,71 @@
 
         table {
             width: 100%; 
-            border-collapse: collapse;
             font-family: 'Montserrat', sans-serif;
             white-space: nowrap;
+            table-layout: fixed;
+            border-spacing: 0 1vw;
         }
 
         td {
+            display: table-cell;
             text-align: left;
             border: 1px solid black;
         }
 
+        td.profile-pic,
+        td.class-pic {
+            width: 12%; 
+            height: 7vw;
+        }
+
+        td.user-data,
+        td.class-data {
+            width: 70%; 
+        }
+
         tr {
-            display: block; 
             background-color: #f9f9f9; 
-            margin-bottom: 1vw; 
         }
 
-        .profile-pic {
-            width: 12% !important;
-            width: auto; 
+        .profile-pic,
+        .class-pic {
             text-align: center;
+            overflow: hidden;
         }
 
-        .profile-pic img {
-            max-width: 100%; 
-            height: auto; 
+        .profile-pic img,
+        .class-pic img {
+            width: 100%; 
+            height: 100%;
+            object-fit: cover;
         }
 
-        .user-data {
+        .user-data,
+        .class-data {
             font-size: 1vw; 
         }
 
-        .user-data span {
+        .user-data span,
+        .class-data span {
             display: block; 
             padding-left: 0.8vw;
         }
 
-        .username-label {
+        .username-label,
+        .class-name-label {
             font-size: 1.2vw; 
             font-weight: bold;
         }
 
-        .other-data {
+        .other-data,
+        .other-class-data {
             font-size: 0.8vw;
         }
 
-        .user-type {
-            text-align: center; /* Center the text */
+        .user-type,
+        .class-difficulty {
+            text-align: center; 
             font-size: 1vw;
             font-weight: bold;
         }
@@ -171,6 +185,22 @@
             color: green; 
         }
 
+        .class-difficulty {
+            font-weight: bold;
+        }
+
+        .class-difficulty.easy {
+            color: limegreen;
+        }
+
+        .class-difficulty.medium {
+            color: mediumblue;
+        }
+
+        .class-difficulty.hard {
+            color: red;
+        }
+
     </style>
 </head>
 <body>
@@ -178,15 +208,14 @@
 <div class="page-container">
     <div class="section-container">
         <div class="menu">
-            <button id="user-btn" class="active" onclick="showContent('user')">Users</button>
-            <button id="class-btn" onclick="showContent('class')">Classes</button>
+            <button id="user-btn" class="<?php echo ($_GET['type'] == 'user' || !isset($_GET['type'])) ? 'active' : ''; ?>" onclick="showContent('user')">Users</button>
+            <button id="class-btn" class="<?php echo ($_GET['type'] == 'class') ? 'active' : ''; ?>" onclick="showContent('class')">Classes</button>
         </div>
 
         <!-- User Content -->
         <div class="content <?php echo ($_GET['type'] == 'user' ? 'active' : ''); ?>" id="user-content">
             <div class="search-container">
                 <input type="text" class="user-content-search-input" id="user-content-search-input" placeholder="Search users..." onkeyup="searchFunction('user')" autofocus>
-                <button class="search-button" >🔍</button>
             </div><br>
             <div class="table-container">
                 <table>
@@ -210,12 +239,30 @@
         </div>
 
 
-        <!-- Class Content -->
-        <div class="content <?php echo ($_GET['type'] == 'class' ? 'active' : ''); ?>" id="class-content">
-            <div class="search-container">
-                <input type="text" class="class-content-search-input" id="class-content-search-input" placeholder="Search classes..." onkeyup="searchFunction('class')" autofocus>
-                <button class="search-button" >🔍</button>
-            </div><br>
+    <!-- Class Content -->
+    <div class="content <?php echo ($_GET['type'] == 'class' ? 'active' : ''); ?>" id="class-content">
+        <div class="search-container">
+            <input type="text" class="class-content-search-input" id="class-content-search-input" placeholder="Search classes..." onkeyup="searchFunction('class')" autofocus>
+        </div><br>
+        <div class="table-container">
+            <table>
+                <tbody>
+                    <?php
+                    while ($row = mysqli_fetch_assoc($classResult)) {
+                        echo "<tr>";
+                        echo "<td class='class-pic'><img src='" . (!empty($row['ClassDashboard']) ? $row['ClassDashboard'] : '../images/emptyImage.png') . "' alt='Class Picture'></td>";
+                        echo "<td class='class-data'>";
+                        echo "<span class='class-name-label'>{$row['ClassName']}</span><br>";
+                        echo "<span class='other-class-data'><b>ID:</b> {$row['ClassID']}<br>";
+                        echo "<b>Created By:</b> {$row['UserName']}<br>";
+                        echo "<b>Created Date:</b> {$row['ClassCreateDate']}<br></span>";
+                        echo "</td>";
+                        echo "<td class='class-difficulty " . strtolower($row['ClassDiff']) . "'>{$row['ClassDiff']}</td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -227,11 +274,13 @@
             document.getElementById('class-content').classList.remove('active');
             document.getElementById('user-btn').classList.add('active');
             document.getElementById('class-btn').classList.remove('active');
+            history.pushState(null, null, '?type=user'); 
         } else if (contentType === 'class') {
             document.getElementById('user-content').classList.remove('active');
             document.getElementById('class-content').classList.add('active');
             document.getElementById('user-btn').classList.remove('active');
             document.getElementById('class-btn').classList.add('active');
+            history.pushState(null, null, '?type=class'); 
         }
     }
 </script>

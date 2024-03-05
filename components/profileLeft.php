@@ -48,10 +48,8 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
     }
 
     .user-profile-img {
-        max-width: 35%; 
-        max-height: 35%; 
-        width: auto;
-        height: auto;
+        width: 15vw;
+        height: 15vw;
         border: 2px solid #ccc; 
         box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
         margin-left: 2vw;

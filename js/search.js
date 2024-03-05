@@ -1,16 +1,25 @@
 function searchFunction(contentType) {
 
-    var input = document.getElementById('user-content-search-input').value.toUpperCase();
-    var rows = document.querySelectorAll('#user-content table tbody tr');
+    var input = document.getElementById(contentType + '-content-search-input').value.toUpperCase();
+    var rows = document.querySelectorAll('#' + contentType + '-content table tbody tr');
 
     // Loop through all table rows
     for (var i = 0; i < rows.length; i++) {
-        var username = rows[i].querySelector('.username-label').textContent.toUpperCase();
-        var userType = rows[i].querySelector('.user-type').textContent.toUpperCase();
-        var userID = rows[i].querySelector('.other-data').textContent.toUpperCase();
-        
-        // Hide the row if any of the fields doesn't match the search query
-        if (username.indexOf(input) > -1 || userType.indexOf(input) > -1 || userID.indexOf(input) > -1) {
+        var className = rows[i].querySelector('.class-name-label');
+        var teacherName = rows[i].querySelector('.other-class-data');
+        var difficulty = rows[i].querySelector('.class-difficulty');
+
+        var searchText = "";
+        if (contentType === 'user') {
+            var username = rows[i].querySelector('.username-label');
+            var userType = rows[i].querySelector('.user-type');
+            var userID = rows[i].querySelector('.other-data');
+            searchText = username.textContent.toUpperCase() + " " + userType.textContent.toUpperCase() + " " + userID.textContent.toUpperCase();
+        } else if (contentType === 'class') {
+            searchText = className.textContent.toUpperCase() + " " + teacherName.textContent.toUpperCase() + " " + difficulty.textContent.toUpperCase();
+        }
+
+        if (searchText.indexOf(input) > -1) {
             rows[i].style.display = '';
         } else {
             rows[i].style.display = 'none';
