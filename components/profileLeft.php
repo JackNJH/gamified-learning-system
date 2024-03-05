@@ -102,15 +102,13 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
     }
 
     .badge-wrapper {
-        width: 175px; 
-        height: 175px; 
         margin: 0 3%; 
     }
 
     .user-badge,
     .empty-badge {
-        width: 100%;
-        height: 100%;
+        width: 9vw; 
+        height: 9vw; 
         filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
     }
 

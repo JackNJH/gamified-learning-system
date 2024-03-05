@@ -132,15 +132,13 @@ $resultEarned = mysqli_query($conn, $query);
             width: 100%;
         }
         .badge-wrapper {
-            width: 175px; 
-            height: 175px; 
             margin: 0 3%; 
         }
 
         .user-badge,
         .empty-badge {
-            width: 100%;
-            height: 100%;
+            width: 9vw; 
+            height: 9vw; 
             filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
         }
 
@@ -218,14 +216,12 @@ $resultEarned = mysqli_query($conn, $query);
 
         .earned-badge-container {
             position: relative;
-            display: flex;
-            width: 175px; 
-            height: 175px; 
+            display: flex; 
         }
 
         .earned-badge {
-            width: 100%; 
-            height: 100%;
+            width: 9vw; 
+            height: 9vw;
             filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
             transition: transform 0.3s ease;
             object-fit: cover;
