@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $phone = $_POST['tel'];
     $role = $_POST['role'];
+    $status = 'active';
 
     $create_date = date("Y-m-d H:i:s");
     
@@ -20,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Password and Confirmation Password are different!";
     } else {
         $user_id = uniqid("U"); 
-        $sql = "INSERT INTO user (UserID, UserName, UserEmail, UserTel, UserPass, UserType, UserCreateDate) VALUES ('$user_id', '$username', '$email', '$phone', '$password', '$role', '$create_date')";
+        $sql = "INSERT INTO user (UserID, UserName, UserEmail, UserTel, UserPass, UserType, UserCreateDate, UserStatus) VALUES ('$user_id', '$username', '$email', '$phone', '$password', '$role', '$create_date', '$status')";
         
         if (mysqli_query($conn, $sql)) {
             
@@ -69,8 +70,6 @@ include '../components/header.php';
 <title>Register Page</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.19/build/css/intlTelInput.css">
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@19.2.19/build/js/intlTelInput.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/submitBtns.css">
 <link rel="stylesheet" href="../css/error.css">
 <style>

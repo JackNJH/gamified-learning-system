@@ -7,7 +7,7 @@
 
     include '../components/header.php'; // Header
 
-    $userQuery = "SELECT UserID, UserName, UserType, UserPFP, UserCreateDate FROM user WHERE UserType != 'admin'";
+    $userQuery = "SELECT UserID, UserName, UserType, UserPFP, UserCreateDate, UserStatus FROM user WHERE UserType != 'admin'";
     $userResult = mysqli_query($conn, $userQuery);
     
 
@@ -26,7 +26,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../css/h2_title.css">
-<title>Search</title>
+<title>Search Page</title>
 <head>
     <style>
         .page-container {
@@ -122,8 +122,8 @@
 
         td.profile-pic,
         td.class-pic {
-            width: 12%; 
-            height: 7vw;
+            width: 14%; 
+            height: 8vw;
         }
 
         td.user-data,
@@ -148,6 +148,16 @@
             object-fit: cover;
         }
 
+        .profile-link {
+            color: chocolate; 
+            text-decoration: none; 
+        }
+
+        .profile-link:hover {
+            text-decoration: underline; 
+            color: orange; 
+        }
+
         .user-data,
         .class-data {
             font-size: 1vw; 
@@ -168,6 +178,7 @@
         .other-data,
         .other-class-data {
             font-size: 0.8vw;
+            line-height: 1.5;
         }
 
         .user-type,
@@ -204,7 +215,7 @@
     </style>
 </head>
 <body>
-<h2>Search</h2>
+<h2>Search Page</h2>
 <div class="page-container">
     <div class="section-container">
         <div class="menu">
@@ -225,9 +236,10 @@
                                 echo "<tr>";
                                 echo "<td class='profile-pic'><img src='" . (!empty($row['UserPFP']) ? $row['UserPFP'] : '../images/guestPFP.png') . "' alt='Profile Picture'></td>";
                                 echo "<td class='user-data'>";
-                                echo "<span class='username-label'>{$row['UserName']}</span><br>"; 
+                                echo "<span class='username-label'><a class='profile-link' href='../public/viewOtherProfile?user_id={$row['UserID']}'>{$row['UserName']}</a></span><br>";
                                 echo "<span class='other-data'><b>ID:</b> {$row['UserID']}<br>"; 
-                                echo "<b>Created Date:</b> {$row['UserCreateDate']}<br></span>"; 
+                                echo "<b>Created Date:</b> {$row['UserCreateDate']}<br>"; 
+                                echo "<b>Account Status:</b> {$row['UserStatus']}<br></span>";
                                 echo "</td>";
                                 echo "<td class='user-type " . ($row['UserType'] == 'student' ? 'student' : 'teacher') . "'>{$row['UserType']}</td>";
                                 echo "</tr>";
