@@ -18,50 +18,58 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (mysqli_num_rows($result) > 0) {
         $user_info = mysqli_fetch_array($result);
-        
-        $_SESSION['email'] = $Email;
-        $_SESSION['username'] = $user_info['UserName'];
-        $_SESSION['user_id'] = $user_info['UserID'];
-        $role = $user_info['UserType'];
-        $_SESSION['role'] = $user_info['UserType'];
 
-        //Get teacher_id
-        if ($role == 'teacher') {
-            $query_teacher_id = "SELECT TeacherID FROM teacher WHERE UserID = '" . $user_info['UserID'] . "'";
-            $result_teacher_id = mysqli_query($conn, $query_teacher_id);
-            if (!$result_teacher_id) {
-                die("Error fetching teacher's ID: " . mysqli_error($conn));
-            }
-            $teacher_row = mysqli_fetch_assoc($result_teacher_id);
-            $_SESSION['teacher_id'] = $teacher_row['TeacherID'];
+        if ($user_info['UserStatus'] == 'banned') {
+            $banned_user=true;
+            include 'login_err.php'; 
 
-        //Get student_id
-        } elseif ($role == 'student') {
-            $query_student_id = "SELECT StudentID FROM student WHERE UserID = '" . $user_info['UserID'] . "'";
-            $result_student_id = mysqli_query($conn, $query_student_id);
-            if (!$result_student_id) {
-                die("Error fetching student's ID: " . mysqli_error($conn));
-            }
-            $student_row = mysqli_fetch_assoc($result_student_id);
-            $_SESSION['student_id'] = $student_row['StudentID'];
-        }
-
-        if (!empty($_POST["remember"])) {
-            setcookie("email", $Email, time() + (365 * 24 * 60 * 60));
-            setcookie("password", $_POST["password"], time() + (365 * 24 * 60 * 60));
         } else {
-            setcookie("email", "", time() - 3600);
-            setcookie("password", "", time() - 3600);
+
+            $_SESSION['email'] = $Email;
+            $_SESSION['username'] = $user_info['UserName'];
+            $_SESSION['user_id'] = $user_info['UserID'];
+            $role = $user_info['UserType'];
+            $_SESSION['role'] = $user_info['UserType'];
+    
+            //Get teacher_id
+            if ($role == 'teacher') {
+                $query_teacher_id = "SELECT TeacherID FROM teacher WHERE UserID = '" . $user_info['UserID'] . "'";
+                $result_teacher_id = mysqli_query($conn, $query_teacher_id);
+                if (!$result_teacher_id) {
+                    die("Error fetching teacher's ID: " . mysqli_error($conn));
+                }
+                $teacher_row = mysqli_fetch_assoc($result_teacher_id);
+                $_SESSION['teacher_id'] = $teacher_row['TeacherID'];
+    
+            //Get student_id
+            } elseif ($role == 'student') {
+                $query_student_id = "SELECT StudentID FROM student WHERE UserID = '" . $user_info['UserID'] . "'";
+                $result_student_id = mysqli_query($conn, $query_student_id);
+                if (!$result_student_id) {
+                    die("Error fetching student's ID: " . mysqli_error($conn));
+                }
+                $student_row = mysqli_fetch_assoc($result_student_id);
+                $_SESSION['student_id'] = $student_row['StudentID'];
+            }
+    
+            if (!empty($_POST["remember"])) {
+                setcookie("email", $Email, time() + (365 * 24 * 60 * 60));
+                setcookie("password", $_POST["password"], time() + (365 * 24 * 60 * 60));
+            } else {
+                setcookie("email", "", time() - 3600);
+                setcookie("password", "", time() - 3600);
+            }
+    
+            header("Location: ../index.php");
+            exit;
         }
 
-        
-        header("Location: ../index.php");
-        exit;
     } else {
         include 'login_err.php';
     }
 }
 ?>
+
 
 
 <!DOCTYPE html>

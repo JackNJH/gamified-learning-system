@@ -40,7 +40,11 @@
 
 <div class="login-alert">
     <span class="login-alert-closebtn" onclick="window.location.href = 'index.php';">&times;</span> 
-    <strong>Wrong email or password.</strong> Please try again.
+    <?php if (isset($banned_user) && $banned_user): ?>
+        <strong>This account has been banned.</strong> Please contact the administrator for assistance.
+    <?php else: ?>
+        <strong>Wrong email or password.</strong> Please try again.
+    <?php endif; ?>
 </div>
 
 </body>
