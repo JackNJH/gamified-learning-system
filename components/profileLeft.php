@@ -98,25 +98,27 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
         justify-content: center;
         align-items: center; 
         margin-top: 10%; 
-        max-width: 50%;
+        width: 100%;
+    }
+
+    .badge-wrapper {
+        width: 175px; 
+        height: 175px; 
+        margin: 0 3%; 
+    }
+
+    .user-badge,
+    .empty-badge {
+        width: 100%;
+        height: 100%;
+        filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
     }
 
     .user-badge {
-        width: 50%; 
-        height: auto; 
-        max-width: 175px; 
-        max-height: 175px; 
-        margin: 0 5%; 
-        filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+        object-fit: cover;
     }
 
     .empty-badge {
-        width: 50%; 
-        height: auto; 
-        max-width: 175px; 
-        max-height: 175px; 
-        margin: 0 5%; 
-        filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
         opacity: 0.5;
     }
 
@@ -170,27 +172,41 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
             <div class="user-profile-left2">
             <?php if ($role === 'admin'): ?>
                 <div class="user-badge-container">
-                    <img class="user-badge" src="../images/<?php echo $role; ?>Badge.png" alt="<?php echo ucfirst($role); ?> Badge" title="You have the <?php echo $role; ?> role!">
-                    <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
-                    <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                    <div class="badge-wrapper">
+                        <img class="user-badge" src="../images/<?php echo $role; ?>Badge.png" alt="<?php echo ucfirst($role); ?> Badge" title="You have the <?php echo $role; ?> role!">
+                    </div>
+                    <div class="badge-wrapper">
+                        <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                    </div>
+                    <div class="badge-wrapper">
+                        <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                    </div>
                 </div>
             <?php endif; ?>
             <?php if ($role === 'teacher'): ?>
                 <div class="user-badge-container">
-                    <img class="user-badge" src="../images/<?php echo $role; ?>Badge.png" alt="<?php echo ucfirst($role); ?> Badge" title="You have the <?php echo $role; ?> role!">
-                    <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
-                    <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                    <div class="badge-wrapper">
+                        <img class="user-badge" src="../images/<?php echo $role; ?>Badge.png" alt="<?php echo ucfirst($role); ?> Badge" title="You have the <?php echo $role; ?> role!">
+                    </div>
+                    <div class="badge-wrapper">
+                        <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                    </div>
+                    <div class="badge-wrapper">
+                        <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                    </div>
                 </div>
             <?php endif; ?>
             <?php if ($role === 'student'): ?>
                 <div class="user-badge-container">
                     <?php foreach ($selectedBadges as $badgeKey => $badgeID): ?>
-                        <?php if (!is_null($badgeID)): ?>
-                            <?php $badgeInfo = getBadgeInfo($conn, $badgeID); ?>
-                            <img class="user-badge" src="<?php echo $badgeInfo['BadgePic']; ?>" alt="<?php echo $badgeInfo['BadgeName']; ?>">
-                        <?php else: ?>
-                            <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
-                        <?php endif; ?>
+                        <div class="badge-wrapper">
+                            <?php if (!is_null($badgeID)): ?>
+                                <?php $badgeInfo = getBadgeInfo($conn, $badgeID); ?>
+                                <img class="user-badge" src="<?php echo $badgeInfo['BadgePic']; ?>" alt="<?php echo $badgeInfo['BadgeName']; ?>">
+                            <?php else: ?>
+                                <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                            <?php endif; ?>
+                        </div>
                     <?php endforeach; ?>
                 </div>
             <?php endif; ?>

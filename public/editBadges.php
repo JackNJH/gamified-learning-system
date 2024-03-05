@@ -94,10 +94,8 @@ $resultEarned = mysqli_query($conn, $query);
         }
 
         .user-profile-img {
-            max-width: 35%; 
-            max-height: 35%; 
-            width: auto;
-            height: auto;
+            width: 15vw;
+            height: 15vw;
             border: 2px solid #ccc; 
             box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
         }
@@ -131,16 +129,27 @@ $resultEarned = mysqli_query($conn, $query);
             justify-content: center;
             align-items: center; 
             margin-top: 10%; 
-            max-width: 50%;
+            width: 100%;
+        }
+        .badge-wrapper {
+            width: 175px; 
+            height: 175px; 
+            margin: 0 3%; 
+        }
+
+        .user-badge,
+        .empty-badge {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
         }
 
         .user-badge {
-            width: 50%; 
-            height: auto; 
-            max-width: 175px; 
-            max-height: 175px; 
-            margin: 0 5%; 
-            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+            object-fit: cover;
+        }
+
+        .empty-badge {
+            opacity: 0.5;
         }
 
         .user-badge:hover {
@@ -148,15 +157,6 @@ $resultEarned = mysqli_query($conn, $query);
             transition: transform 0.3s ease; 
         }
 
-        .empty-badge {
-            width: 50%; 
-            height: auto; 
-            max-width: 175px; 
-            max-height: 175px; 
-            margin: 0 5%; 
-            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
-            opacity: 0.5;
-        }
 
         .badges-buttons {
             display: flex;
@@ -219,15 +219,16 @@ $resultEarned = mysqli_query($conn, $query);
         .earned-badge-container {
             position: relative;
             display: flex;
+            width: 175px; 
+            height: 175px; 
         }
 
         .earned-badge {
             width: 100%; 
-            height: auto;
-            max-width: 175px; 
-            max-height: 175px; 
+            height: 100%;
             filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
             transition: transform 0.3s ease;
+            object-fit: cover;
         }
 
         .earned-badge:hover {
@@ -280,12 +281,14 @@ $resultEarned = mysqli_query($conn, $query);
                     <div class="user-profile-left2">
                         <div class="user-badge-container">
                             <?php foreach ($selectedBadges as $badgeKey => $badgeID): ?>
-                                <?php if (!is_null($badgeID)): ?>
-                                    <?php $badgeInfo = getBadgeInfo($conn, $badgeID); ?>
-                                    <img class="user-badge" src="<?php echo $badgeInfo['BadgePic']; ?>" alt="<?php echo $badgeInfo['BadgeName']; ?>">
-                                <?php else: ?>
-                                    <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
-                                <?php endif; ?>
+                                <div class="badge-wrapper">
+                                    <?php if (!is_null($badgeID)): ?>
+                                        <?php $badgeInfo = getBadgeInfo($conn, $badgeID); ?>
+                                        <img class="user-badge" src="<?php echo $badgeInfo['BadgePic']; ?>" alt="<?php echo $badgeInfo['BadgeName']; ?>">
+                                    <?php else: ?>
+                                        <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
+                                    <?php endif; ?>
+                                </div>
                             <?php endforeach; ?>
                         </div>
                         <div class="badges-buttons">
