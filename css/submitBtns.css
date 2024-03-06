@@ -2,14 +2,14 @@ input[type="submit"],
 .button {
     display: block;
     width: 100%;
-    padding: 0.5vw;
-    margin-top: 0.5vw;
+    padding: 10px;
+    margin-top: 10px;
     box-sizing: border-box;
     border: none;
     border-radius: 4px;
     background-color: orange;
     color: black;
-    font-size: 0.8vw;
+    font-size: 15;
     cursor: pointer;
     font-family: 'Poppins', sans-serif; 
     font-weight: bold;
@@ -24,7 +24,7 @@ input[type="submit"]:hover,
 
 .button-container button,
 .input-button {
-    padding: 0.5vw 1vw;
+    padding: 10px 20px;
     border: none;
     border-radius: 4px;
     background-color: orange;
