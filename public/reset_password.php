@@ -113,14 +113,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     .input-button {
         width: 25%;
-        padding: 0.5vw 1vw;
+        padding: 10px 20px;
         border-radius: 4px;
         background-color: orange;
         color: black;
         cursor: pointer;
         border: none;
         font-weight: bold;
-        font-size: 0.8vw;
+        font-size: 15;
         transition: background-color 0.3s;
         font-family: 'Poppins', sans-serif;
     }
