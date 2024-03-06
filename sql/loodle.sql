@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 29, 2024 at 08:26 AM
+-- Generation Time: Mar 06, 2024 at 08:33 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `badges` (
 --
 
 INSERT INTO `badges` (`BadgeID`, `BadgeName`, `BadgeReq`, `BadgePic`, `ClassID`) VALUES
-(1, 'test1', 'test', '../uploads/classes/1/783px-Test-Logo.svg.png', 1),
+(1, 'test1', 'test', '../uploads/classes/1/a64b4e4845233b1c44e6993a667b9b73 - Copy.jpg', 1),
 (3, 'test2', 'sadwqdasd', '../uploads/classes/2/588438128cc558ce11bb218fc760757c.jpg', 2);
 
 -- --------------------------------------------------------
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `class` (
 --
 
 INSERT INTO `class` (`ClassID`, `TeacherID`, `ClassName`, `ClassDesc`, `ClassDashboard`, `ClassDiff`, `ClassMaxPoints`, `ClassPrivacy`, `ClassCode`, `ClassCreateDate`) VALUES
-(1, 'T65d5f96036291', 'test', 'test class', 'blabla', 'hard', 100, 'private', 1234, '2024-02-28'),
+(1, 'T65d5f96036291', 'test', 'test class', '', 'hard', 100, 'private', 1234, '2024-02-28'),
 (2, 'T65d5f96036291', 'test2', 'dsadasad', '', 'easy', 100, 'public', NULL, '2024-02-28');
 
 -- --------------------------------------------------------
@@ -210,8 +210,9 @@ CREATE TABLE IF NOT EXISTS `student` (
 --
 
 INSERT INTO `student` (`StudentID`, `UserID`, `SelectedBadge1`, `SelectedBadge2`, `SelectedBadge3`) VALUES
-('S65d5f97ecec69', 'U65d5f97ece763', NULL, NULL, NULL),
-('S65e02dc353965', 'U65e02dc3530f3', NULL, NULL, NULL);
+('S65d5f97ecec69', 'U65d5f97ece763', 1, 1, 1),
+('S65e02dc353965', 'U65e02dc3530f3', NULL, NULL, NULL),
+('S65e6f8180ce09', 'U65e6f8180c5a1', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -283,7 +284,7 @@ CREATE TABLE IF NOT EXISTS `tickets` (
 --
 
 INSERT INTO `tickets` (`TicketID`, `StudentID`, `TicketCtgy`, `TicketDesc`, `TicketAttch`, `TicketStat`, `TicketDate`) VALUES
-(1, 'S65d5f97ecec69', 'half the site doesnt work', 'um sir i\'d like to complain to ur manager', '', 'open', '2024-02-28'),
+(1, 'S65d5f97ecec69', 'half the site doesnt work', '\r\nUgh, I am utterly frustrated right now! I swear, I\'ve been trying to navigate through this website for what feels like an eternity, and half of it just doesn\'t work! It\'s like they expect us to be mind readers or something. I mean, isn\'t it their job to make sure this thing runs smoothly? I shouldn\'t have to jump through hoops just to get basic information or complete a simple task. This is beyond ridiculous! I demand to speak to someone in charge because this level of incompetence is completely unacceptable. They need to get their act together and fix this mess ASAP!', '../uploads/tickets/1/2d8f2dfd613f960a4cc189b20a6a58163f565c67.png', 'pending', '2024-02-28'),
 (2, 'S65e02dc353965', 'mouse aint working', 'hey my mouse isnt working >:(', '../uploads/tickets/2/download.jpeg', 'open', '2024-02-12');
 
 -- --------------------------------------------------------
@@ -303,6 +304,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `UserBio` text NOT NULL,
   `UserPFP` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `UserCreateDate` date NOT NULL,
+  `UserStatus` text NOT NULL,
   PRIMARY KEY (`UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -310,11 +312,12 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`UserID`, `UserName`, `UserEmail`, `UserTel`, `UserPass`, `UserType`, `UserBio`, `UserPFP`, `UserCreateDate`) VALUES
-('Adminidsimulator', 'imadmin', 'imadmin@gmail.com', '12345678', 'imadmin', 'admin', 'I\'m an admin hahaha\r\n', '../uploads/profilepic/Adminidsimulator/cat2.jpg', '2024-02-21'),
-('U65d5f960356df', 'teachergae', 'teachergae@gmail.com', '123123123', 'teachergae', 'teacher', '', '', '2024-02-21'),
-('U65d5f97ece763', 'student123', 'student123@gmail.com', '32132132', 'student123', 'student', 'Hi<br>How\'s life<br><br>', '', '2024-02-21'),
-('U65e02dc3530f3', 'student2', 'student2@gmail.com', '222222333', 'student2', 'student', '', '', '2024-02-29');
+INSERT INTO `user` (`UserID`, `UserName`, `UserEmail`, `UserTel`, `UserPass`, `UserType`, `UserBio`, `UserPFP`, `UserCreateDate`, `UserStatus`) VALUES
+('Adminidsimulator', 'imadmin', 'imadmin@gmail.com', '12345678', 'imadmin', 'admin', 'I\'m an admin hahaha\r\n', '../uploads/profilepic/Adminidsimulator/cat2.jpg', '2024-02-21', 'active'),
+('U65d5f960356df', 'teachergae', 'teachergae@gmail.com', '123123123', 'teachergae', 'teacher', '', '', '2024-02-21', 'active'),
+('U65d5f97ece763', 'student123', 'student123@gmail.com', '32132132', 'student123', 'student', 'Hi<br>How\'s life<br><br>', '', '2024-02-21', 'active'),
+('U65e02dc3530f3', 'student2', 'student2@gmail.com', '222222333', 'student2', 'student', '', '', '2024-02-29', 'active'),
+('U65e6f8180c5a1', 'ban subject', 'bansubject@gmail.com', '90009992', 'ban subject', 'student', 'do i deserve dis ban', '', '2024-03-05', 'banned');
 
 --
 -- Constraints for dumped tables
