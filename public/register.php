@@ -20,41 +20,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($password != $confirmPassword) {
         $error = "Password and Confirmation Password are different!";
     } else {
-        $user_id = uniqid("U"); 
-        $sql = "INSERT INTO user (UserID, UserName, UserEmail, UserTel, UserPass, UserType, UserCreateDate, UserStatus) VALUES ('$user_id', '$username', '$email', '$phone', '$password', '$role', '$create_date', '$status')";
-        
-        if (mysqli_query($conn, $sql)) {
-            
-            $teacher_id = uniqid("T");
-            $student_id = uniqid("S");
-            
-            switch ($role) {
-                case 'teacher':
-                    $sql_role = "INSERT INTO teacher (TeacherID, UserID) VALUES ('$teacher_id', '$user_id')";
-                    break;
-                case 'student':
-                    $sql_role = "INSERT INTO student (StudentID, UserID) VALUES ('$student_id', '$user_id')";
-                    break;
-                default:
-                    break;
-            }
-            
-            if (isset($sql_role)) {
-                if (mysqli_query($conn, $sql_role)) {
-                    echo "<script>alert('Registration successful!'); window.location.href='../index.php';</script>";
-                } else {
-                    echo "Error: " . $sql_role . "<br>" . mysqli_error($conn);
-                }
-            }
+        $check_email_query = "SELECT * FROM user WHERE UserEmail = '$email'";
+        $result = mysqli_query($conn, $check_email_query);
+        if (mysqli_num_rows($result) > 0) {
+            $error = "Email already exists. Please choose a different email.";
         } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            $user_id = uniqid("U"); 
+            $sql = "INSERT INTO user (UserID, UserName, UserEmail, UserTel, UserPass, UserType, UserCreateDate, UserStatus) VALUES ('$user_id', '$username', '$email', '$phone', '$password', '$role', '$create_date', '$status')";
+            
+            if (mysqli_query($conn, $sql)) {
+                
+                $teacher_id = uniqid("T");
+                $student_id = uniqid("S");
+                
+                switch ($role) {
+                    case 'teacher':
+                        $sql_role = "INSERT INTO teacher (TeacherID, UserID) VALUES ('$teacher_id', '$user_id')";
+                        break;
+                    case 'student':
+                        $sql_role = "INSERT INTO student (StudentID, UserID) VALUES ('$student_id', '$user_id')";
+                        break;
+                    default:
+                        break;
+                }
+                
+                if (isset($sql_role)) {
+                    if (mysqli_query($conn, $sql_role)) {
+                        echo "<script>alert('Registration successful!'); window.location.href='../index.php';</script>";
+                    } else {
+                        echo "Error: " . $sql_role . "<br>" . mysqli_error($conn);
+                    }
+                }
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            }
         }
     }
 }
 
 include '../components/header.php'; 
 ?>
-
 
 
 
