@@ -20,10 +20,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($password != $confirmPassword) {
         $error = "Password and Confirmation Password are different!";
     } else {
+
         $check_email_query = "SELECT * FROM user WHERE UserEmail = '$email'";
         $result = mysqli_query($conn, $check_email_query);
+
+        $check_phone_query = "SELECT * FROM user WHERE UserTel = '$phone'";
+        $result_phone = mysqli_query($conn, $check_phone_query);
+
         if (mysqli_num_rows($result) > 0) {
             $error = "Email already exists. Please choose a different email.";
+        } elseif (mysqli_num_rows($result_phone) > 0) {
+            $error = "Phone number already exists. Please choose a different phone number.";
         } else {
             $user_id = uniqid("U"); 
             $sql = "INSERT INTO user (UserID, UserName, UserEmail, UserTel, UserPass, UserType, UserCreateDate, UserStatus) VALUES ('$user_id', '$username', '$email', '$phone', '$password', '$role', '$create_date', '$status')";
