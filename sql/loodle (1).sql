@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 06, 2024 at 08:33 AM
+-- Generation Time: Mar 07, 2024 at 07:09 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `badges` (
 --
 
 INSERT INTO `badges` (`BadgeID`, `BadgeName`, `BadgeReq`, `BadgePic`, `ClassID`) VALUES
-(1, 'test1', 'test', '../uploads/classes/1/a64b4e4845233b1c44e6993a667b9b73 - Copy.jpg', 1),
+(1, 'Upside Down Duck', 'complete the class?\r\n', '../uploads/classes/1/a64b4e4845233b1c44e6993a667b9b73 - Copy.jpg', 1),
 (3, 'test2', 'sadwqdasd', '../uploads/classes/2/588438128cc558ce11bb218fc760757c.jpg', 2);
 
 -- --------------------------------------------------------
@@ -118,8 +118,8 @@ CREATE TABLE IF NOT EXISTS `class` (
 --
 
 INSERT INTO `class` (`ClassID`, `TeacherID`, `ClassName`, `ClassDesc`, `ClassDashboard`, `ClassDiff`, `ClassMaxPoints`, `ClassPrivacy`, `ClassCode`, `ClassCreateDate`) VALUES
-(1, 'T65d5f96036291', 'test', 'test class', '', 'hard', 100, 'private', 1234, '2024-02-28'),
-(2, 'T65d5f96036291', 'test2', 'dsadasad', '', 'easy', 100, 'public', NULL, '2024-02-28');
+(1, 'T65d5f96036291', 'Physics', 'test class', '', 'hard', 100, 'private', 1234, '2024-02-28'),
+(2, 'T65d5f96036291', 'Calculus II', 'dsadasad', '', 'easy', 100, 'public', NULL, '2024-02-28');
 
 -- --------------------------------------------------------
 
@@ -313,7 +313,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`UserID`, `UserName`, `UserEmail`, `UserTel`, `UserPass`, `UserType`, `UserBio`, `UserPFP`, `UserCreateDate`, `UserStatus`) VALUES
-('Adminidsimulator', 'imadmin', 'imadmin@gmail.com', '12345678', 'imadmin', 'admin', 'I\'m an admin hahaha\r\n', '../uploads/profilepic/Adminidsimulator/cat2.jpg', '2024-02-21', 'active'),
+('Adminidsimulator', 'imadmin', 'imadmin@gmail.com', '12345678', 'imadmin', 'admin', 'I love cats!', '../uploads/profilepic/Adminidsimulator/cat2.jpg', '2024-02-21', 'active'),
+('adminnumber2', 'secondadmin', 'secondadmin@gmail.com', '7354437', 'secondadmin', 'admin', 'im the second admin!', '', '2024-03-07', 'active'),
 ('U65d5f960356df', 'teachergae', 'teachergae@gmail.com', '123123123', 'teachergae', 'teacher', '', '', '2024-02-21', 'active'),
 ('U65d5f97ece763', 'student123', 'student123@gmail.com', '32132132', 'student123', 'student', 'Hi<br>How\'s life<br><br>', '', '2024-02-21', 'active'),
 ('U65e02dc3530f3', 'student2', 'student2@gmail.com', '222222333', 'student2', 'student', '', '', '2024-02-29', 'active'),
