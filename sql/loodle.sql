@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 07, 2024 at 07:09 AM
+-- Generation Time: Mar 07, 2024 at 07:17 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -20,20 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `loodle`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admin`
---
-
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE IF NOT EXISTS `admin` (
-  `AdminID` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `UserID` varchar(30) NOT NULL,
-  PRIMARY KEY (`AdminID`),
-  KEY `UserID` (`UserID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -323,12 +309,6 @@ INSERT INTO `user` (`UserID`, `UserName`, `UserEmail`, `UserTel`, `UserPass`, `U
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `admin`
---
-ALTER TABLE `admin`
-  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `user` (`UserID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `answers`
