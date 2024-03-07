@@ -9,6 +9,7 @@
 
     $query = "SELECT t.TicketCtgy AS Category,
                 CONCAT(u.UserName) AS StudentName,
+                u.UserID,
                 t.TicketDate, t.TicketID,
                 t.TicketStat AS Status
             FROM tickets t
@@ -100,6 +101,16 @@
         color: orange; 
         font-weight: bold;
     }
+
+    .profile-link {
+        color: chocolate; 
+        text-decoration: none; 
+    }
+
+    .profile-link:hover {
+        text-decoration: underline; 
+        color: orange; 
+    }
 </style>
 </head>
 <body>
@@ -136,7 +147,7 @@
                             echo "<tr>";
                             echo "<td><a href='ticketsReply.php?ticketID=".$row['TicketID']."' class='ticket-link'>".$row['TicketID']."</a></td>";
                             echo "<td>".$row['Category']."</td>";
-                            echo "<td>".$row['StudentName']."</td>";
+                            echo "<td><a href='../public/viewOtherProfile?user_id={$row['UserID']}' class='profile-link'>".$row['StudentName']."</a></td>";
                             echo "<td>".$row['TicketDate']."</td>";
                             echo "<td>".$row['Status']."</td>";
                             echo "</tr>";
