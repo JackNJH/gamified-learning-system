@@ -7,7 +7,7 @@
 
     include '../components/header.php'; // Header
 
-    $userQuery = "SELECT UserID, UserName, UserType, UserPFP, UserCreateDate, UserStatus FROM user WHERE UserType != 'admin'";
+    $userQuery = "SELECT UserID, UserName, UserType, UserPFP, UserCreateDate, UserStatus FROM user WHERE UserID != '$user_id'";
     $userResult = mysqli_query($conn, $userQuery);
     
 
@@ -193,7 +193,11 @@
         }
 
         .user-type.teacher {
-            color: green; 
+            color: #FFE13B; 
+        }
+
+        .user-type.admin {
+            color: #FF336B; 
         }
 
         .class-difficulty {
@@ -241,7 +245,7 @@
                                 echo "<b>Created Date:</b> {$row['UserCreateDate']}<br>"; 
                                 echo "<b>Account Status:</b> {$row['UserStatus']}<br></span>";
                                 echo "</td>";
-                                echo "<td class='user-type " . ($row['UserType'] == 'student' ? 'student' : 'teacher') . "'>{$row['UserType']}</td>";
+                                echo "<td class='user-type " . ($row['UserType'] == 'student' ? 'student' : ($row['UserType'] == 'teacher' ? 'teacher' : 'admin')) . "'>{$row['UserType']}</td>";
                                 echo "</tr>";
                             }
                         ?>

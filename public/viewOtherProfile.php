@@ -94,7 +94,7 @@ if ($view_role === 'student') {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Profile</title>
+<title><?php echo $user_data['UserName']; ?>'s Profile</title>
 <link rel="stylesheet" href="../css/h2_title.css">
 <link rel="stylesheet" href="../css/error.css">
 <style>
@@ -386,7 +386,7 @@ if ($view_role === 'student') {
                     <?php endif; ?>
 
                 </div>
-                <?php if ($role === 'admin' && !$already_banned): ?>
+                <?php if ($role === 'admin' && !$already_banned && $view_role !== 'admin'): ?>
                     <div class="user-detail">
                         <span class="value">
                             <form id="banForm" action="../modules/ban_user.php" method="POST">
