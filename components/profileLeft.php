@@ -97,7 +97,7 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
         display: flex;
         justify-content: center;
         align-items: center; 
-        margin-top: 10%; 
+        margin-top: 2vw; 
         width: 100%;
     }
 
@@ -127,7 +127,7 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
 
     .badges-button {
         padding: 0.5vw 1vw;
-        margin-top: 2.6vw;
+        margin-top: 2vw;
         background-color: bisque;
         color: black;
         border: none;
