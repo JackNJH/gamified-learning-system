@@ -7,6 +7,11 @@
 
     include '../components/header.php'; // Header
 // all header included are in the components folder
+
+    $sql = "SELECT * FROM class LEFT JOIN classprogress ON classprogress.ClassID = class.ClassID
+    WHERE StudentID='$student_id'";
+        
+    $result=mysqli_query($conn,$sql);
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +19,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/gamified-learning-system-master/css/StudentHome.css">
+    <link rel="stylesheet" href="../css/StudentHome.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <title>Student Home Page</title>
@@ -25,30 +30,36 @@
     </div>
     <div class="classes">
         <table id="class-table">
-            <tr>
+            <!-- <tr onclick="window.location='../student/searchclasses.php';">
                 <td>Class Name + Desc</td>
                 <td>Current Chapter</td>
                 <td>Class Progress</td>
-            </tr>
-            <tr>
-                <td>Class Name + Desc</td>
-                <td>Current Chapter</td>
-                <td>Class Progress</td>
-            </tr>
-            <tr>
-                <td>Class Name + Desc</td>
-                <td>Current Chapter</td>
-                <td>Class Progress</td>
-            </tr>
+            </tr> -->
+            <!-- make it linked to the specific class -->
+            <?php
+
+            while($row = mysqli_fetch_array($result))
+                {
+
+                    //make the rows linkable
+                    echo"<tr onclick='DoNav(\"../student/chapter.php\");'>";
+                    echo"<td>>".$row['ClassName']."</td>";
+                    echo"<td>".$row['ClassDesc']."</td>";
+                    echo"<td>".$row['ProgressPoints']."/".$row['ClassMaxPoints']."</td>";
+                    echo"</tr>";
+
+                }
+
+            ?>
         </table>        
     </div>
     <!-- make the classes thing a table, follow the previosu sched thing -->
     <!-- make the buttons bellow more cleaner looking and shit -->
-    <div class="main-buttons">
-        FIND CLASSES
+    <div>
+        <a href="../student/searchclasses.php" class="main-buttons">FIND CLASSES</a>
     </div>
-    <div class="main-buttons">
-        VIEW BADGES
+    <div>
+        <a href="../components/editBadges" class="main-buttons">VIEW BADGES</a>
     </div>
 </body>
 </html> 
