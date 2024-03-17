@@ -77,11 +77,11 @@
 
 }
 .wrapper{
-    margin: 0 auto;
     max-width: 1000px;
     display: flex;
     flex-direction: column;
 }
+.hidden-radio{display:none;}
 .list{
     width: 160px;
     height: 200px;
@@ -94,9 +94,17 @@
     display: grid;
     align-items: center;
     text-align: center;
-    padding: 10px;
+    justify-content: center;
+   
+
+}
+.selection button{
+    width: 100px;
+    height: 30px;
+    background-color: rgb(255, 221, 158);
     
 }
+
 .guide{
     width: 1250px;
     height: 730px;
