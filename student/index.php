@@ -9,7 +9,8 @@
 // all header included are in the components folder
 
     $sql = "SELECT * FROM class LEFT JOIN classprogress ON classprogress.ClassID = class.ClassID
-    WHERE StudentID='$student_id'";
+    WHERE StudentID='$student_id'
+    ORDER BY ProgressPoints DESC";
         
     $result=mysqli_query($conn,$sql);
 ?>
@@ -42,11 +43,12 @@
                 {
 
                     //make the rows linkable
-                    echo"<tr onclick='DoNav(\"../student/chapter.php\");'>";
-                    echo"<td>>".$row['ClassName']."</td>";
-                    echo"<td>".$row['ClassDesc']."</td>";
-                    echo"<td>".$row['ProgressPoints']."/".$row['ClassMaxPoints']."</td>";
-                    echo"</tr>";
+                    echo "<tr>";
+                    echo "<td><img src='".$row["ClassDashboard"]."'></td>";
+                    echo "<td><a href='class.php?ClassID=".$row['ClassID']."'>".$row['ClassName']."</a></td>";
+                    echo "<td><a href='class.php?ClassID=".$row['ClassID']."'>".$row['ClassDesc']."</a></td>";
+                    echo "<td><a href='class.php?ClassID=".$row['ClassID']."'>".$row['ProgressPoints']."/".$row['ClassMaxPoints']."</a></td>";
+                    echo "</tr>";
 
                 }
 

@@ -7,7 +7,7 @@
 
     include '../components/header.php'; // Header
     
-    $data = isset($_GET['class_id']) ? $_GET['class_id'] : '';
+    $data = isset($_GET['ClassID']) ? $_GET['ClassID'] : '';
 
     if ($data === '') {
         // Handle case when user_id is not provided or invalid
@@ -50,7 +50,7 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class </title>
-    <link rel="stylesheet" href="../css/chapter.css">
+    <link rel="stylesheet" href="../css/class.css">
 </head>
 <body>
     <div class="navi-bar">
@@ -94,11 +94,6 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
         ?> 
           
             <div class="chapters">
-                <div class="completion">Completion</div>
-                <div class="progress">
-                    <div class="progressfill"></div>
-                    <span class="progresstext">50%</span>
-                </div>
                  <?php
                     while($row = mysqli_fetch_assoc($result3)){
                  ?> 
@@ -107,7 +102,8 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
                             <div class="selection">
                                 <div class="ChapTitle"><b><?php echo $row['ChapterName'];?></div></b>
                             </div>
-                     </div>
+                        <?php echo "</a>";?>
+                    </div>
                 <?php
                     } 
                 ?>     
@@ -123,7 +119,11 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
             } 
         ?>
 
-        <div class="leaderboard">Class Leaderboard</div>
+        <div>
+            <?php 
+            echo "<a href='leaderboard.php?ClassID=".$_GET['ClassID']."' class='leaderboard'>Class Leaderboard</a>";  
+            ?>
+        </div>
         
     </div>
 </body>
