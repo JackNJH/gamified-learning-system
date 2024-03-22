@@ -57,7 +57,7 @@
     <!-- make the classes thing a table, follow the previosu sched thing -->
     <!-- make the buttons bellow more cleaner looking and shit -->
     <div>
-        <a href="../teacher/viewchapter.php" class="main-buttons">VIEW CHAPTER</a>
+        <a href="../teacher/myclasses.php" class="main-buttons">MY CLASSES</a>
     </div>
     <div>
         <a href="../teacher/createclass.php" class="main-buttons">NEW CLASSES</a>

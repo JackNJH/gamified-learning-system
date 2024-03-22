@@ -1,65 +1,56 @@
 <?php
+    require '../modules/config.php';
 
-require '../modules/config.php';
-if ($role != 'teacher') {
-    header('Location: ../index.php');
-    die;
-}
-
-// Check if class ID is provided
-if (!isset($_POST['class_id'])) {
-    header('Location: ../index.php');
-    die;
-}
-
-// Retrieve form data
-$class_id = $_POST['class_id'];
-$class_name = $_POST['class_name'];
-$description = $_POST['description'];
-$difficulty = $_POST['difficulty'];
-$privacy = $_POST['privacy'];
-$class_code = $_POST['class_code'];
-
-// Check if a new image file is uploaded
-if ($_FILES["dashboard_design"]["name"]) {
-    $target_dir = "../images/";
-    $target_file = $target_dir . basename($_FILES["dashboard_design"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-    // Check file extension
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-        showAlertAndRedirect("Sorry, only JPG, JPEG & PNG files are allowed.");
-        exit;
+    if ($role != 'teacher') {
+        header('Location: ../index.php');
+        die;
     }
 
-    // Upload the file
-    if (move_uploaded_file($_FILES["dashboard_design"]["tmp_name"], $target_file)) {
-        $new_image_path = $target_file;
-    } else {
-        showAlertAndRedirect("Sorry, there was an error uploading your file.");
-        exit;
+    // $ClassID = isset($_GET['ClassID']) ? $_GET['ClassID'] : '';
+
+    // if ($ClassID === '') {
+    //     die("Class ID not provided or invalid.");
+    // }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $className = $_POST['class_name'];
+        $classDesc = $_POST['description'];
+        $difficulty = $_POST['difficulty'];
+        $privacy = $_POST['privacy'];
+        $classCode = $_POST['class_code'];
+
+        // Handle uploaded dashboard design
+        // $dashboardDesign = $_FILES['dashboard_design']['name'];
+        // $dashboardDesignTmpName = $_FILES['dashboard_design']['tmp_name'];
+        // $dashboardDesignPath = '../uploads/dashboard_design/' . $dashboardDesign;
+        // move_uploaded_file($dashboardDesignTmpName, $dashboardDesignPath);
+
+        // Handle uploaded class completion badge
+        // $classBadge = $_FILES['class_badge']['name'];
+        // $classBadgeTmpName = $_FILES['class_badge']['tmp_name'];
+        // $classBadgePath = '../uploads/class_badge/' . $classBadge;
+        // move_uploaded_file($classBadgeTmpName, $classBadgePath);
+
+        $sql = "UPDATE class SET ClassName='$className', ClassDesc='$classDesc', 
+                ClassDashboard='$dashboardDesignPath', ClassDiff='$difficulty', 
+                ClassPrivacy='$privacy', ClassCode='$classCode' 
+                WHERE ClassID='$ClassID'";
+
+        // $result = mysqli_query($conn, $sql);
+
+        
+            // echo "<script>alert('Successfully updated info!');window.location.href='index.php';</script></script>";
+    
+       
+            // echo "<script>alert('Fail to update information!');</script>";
+            if (!mysqli_query($conn,$sql)) {
+                die('Error! '.mysqli_error($conn));
+            }
+            
+            else {
+                echo '<script>alert("Record added!");window.location.href="index.php";</script>';
+            }
+            
     }
-}
-
-// Update class details
-$sql = "UPDATE class SET ClassName = '$class_name', ClassDesc = '$description', ClassDiff = '$difficulty', 
-        ClassPrivacy = '$privacy', ClassCode = '$class_code'";
-
-// Update dashboard design if a new file is uploaded
-if (isset($new_image_path)) {
-    $sql .= ", ClassDashboard = '$new_image_path'";
-}
-
-$sql .= " WHERE ClassID = '$class_id'";
-
-if ($conn->query($sql) === TRUE) {
-    header("Location:index.php");
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
-
-// Close connection
-$conn->close();
-
+    include '../components/header.php'; // Header
 ?>

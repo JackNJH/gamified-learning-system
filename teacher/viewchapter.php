@@ -105,12 +105,12 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
         <?php
             } 
         ?>
-                <form class= class-form>
+ 
             <div>
-            <button type="editclass">Edit Class</button>
-            <button type="reviewstudent">Review Student</button>
-            <button type="addchapter">Add Chapter</button>
-            <button type="deleteclass">Delete Class</button>
+            <a href="../teacher/editclass.php?ClassID=<?php echo $data; ?>" class="situation">Edit Class</a>
+            <a href="../teacher/">Review Student</a>
+            <a href="../teacher/createchapter.php">Add Chapter</a>
+            <a href="../teacher/editclass.php">Delete Class</a>
             </div>
             </form>
         

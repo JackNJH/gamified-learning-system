@@ -17,7 +17,25 @@
     <title>Student menu</title>
     <link rel="stylesheet" href="../css/teacherpage.css">
     <style>
-    
+
+  
+
+  
+  .jason:hover {
+    background-color: darkorange;
+  }
+  .jason {position: absolute;
+    bottom: 82%;
+    right: 70%;
+    padding: 0.7rem;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 8rem;
+    justify-self: center;
+    margin: 0.5rem auto;}
         </style>
 </head>
 <body>
@@ -74,12 +92,18 @@
                 <?php "</a>";?>
            
         </form>
+        
     <?php
                     }
                 }
             }  
         }      
     ?>
+    <form class = jason>
+        <a href="../teacher/createclass.php" class="selection">
+        Create Class
+        </a>
+    </form>
 </div> 
 </body>
 </html>
