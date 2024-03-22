@@ -41,7 +41,11 @@ array_unshift($_SESSION['recent_pages'], $currentPage);
 // Limit the number of stored pages (optional)
 $maxPages = 5;
 $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages);
+
+
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -108,9 +112,9 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
  
             <div>
             <a href="../teacher/editclass.php?ClassID=<?php echo $data; ?>" class="situation">Edit Class</a>
-            <a href="../teacher/">Review Student</a>
-            <a href="../teacher/createchapter.php">Add Chapter</a>
-            <a href="../teacher/editclass.php">Delete Class</a>
+            <a href="../teacher/reviewstudents.php?ClassID=<?php echo $data; ?>" class="situation">Review Student</a>
+            <a href="../teacher/createchapter.php?ClassID=<?php echo $data; ?>" class="situation">Add Chapter</a>
+            <a href="../teacher/deleteclass.php?ClassID=<?php echo $data; ?>" class="situation">Delete Class</a>
             </div>
             </form>
         

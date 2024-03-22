@@ -1,13 +1,34 @@
 <?php
     require '../modules/config.php';
-    if ($role !='teacher'){
+    if ($role != 'teacher'){
         header('Location: ../index.php');
         die;
     }
 
-    include '../components/header.php'; // Header
+    $data = isset($_GET['ClassID']) ? $_GET['ClassID'] : '';
 
+    if ($data === '') {
+        // Handle case when ClassID is not provided or invalid
+        die("ClassID not provided or invalid.");
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $chapterName = $_POST['chapter_name'];
+        $classID = $_POST['ClassID']; // Retrieve ClassID from POST data
+
+        $sql = "INSERT INTO Chapter (ClassID, ChapterName) VALUES ('$classID', '$chapterName')";
+        $result = mysqli_query($conn, $sql);
+
+        if ($result) {
+            echo "<script>alert('Chapter added successfully.'); window.location.href='../teacher/viewchapter.php?ClassID=" . $data . "';</script>";
+        } else {
+            echo "<script>alert('Error adding chapter: " . mysqli_error($conn) . "'); window.location.href='../teacher/myclasses.php';</script>";
+        }
+    }
+
+    include '../components/header.php'; // Header
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -86,21 +107,19 @@ h2 {
 </style>
 </head>
 <body>
-    <div class="container">
-        <h1>CREATE LEVEL FOR ADDED CHAPTERS</h1>
+<div class="container">
+        <h1>CREATE CHAPTER FOR CLASS</h1>
         <h2>ENTER DETAILS</h2>
-        <form class="class-form">
+        <form class="class-form" method="post" enctype="multipart/form-data">
 
+            <!-- Hidden input field for ClassID -->
+            <input type="hidden" name="ClassID" value="<?php echo $data; ?>">
 
-            <label for="Chapter-picvid">Picture/Videos:</label>
-            <input type="file" id="pic/vid" accept="image/*,video/*">
-            <label for="Chapter-picvid">Picture/Videos:</label>
-            <input type="file" id="pic/vid" accept="image/*,video/*">
+            <label for="chapter-name">Chapter name:</label>
+            <input type="text" id="chapter-name" name="chapter_name" required>
 
-
-
-            <button type="cancel">Cancel</button>
-            <button type="submit">Create class</button>
+            <button type="button" onclick="window.history.back();">Cancel</button>
+            <button type="submit">Create Chapter</button>
         </form>
     </div>
 </body>

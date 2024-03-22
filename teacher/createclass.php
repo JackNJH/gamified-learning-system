@@ -121,7 +121,7 @@ h2 {
             <label for="class-code">Private class code:</label>
             <input type="text" id="class-code" name="class_code" required>
 
-            <button type="cancel">Cancel</button>
+            <button type="button" onclick="window.history.back();">Cancel</button>
             <button type="submit">Create class</button>
         </form>
     </div>
