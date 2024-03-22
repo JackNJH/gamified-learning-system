@@ -15,170 +15,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student menu</title>
-    <link rel="stylesheet" href="../css/studentpage.css">
+    <link rel="stylesheet" href="../css/teacherpage.css">
     <style>
-        .options{
     
-    margin-top: 80px;
-    font-size: 20px;
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 500;
-
-}
-
-
-.options a{
-    color: #000000;
-    position: relative;
-    text-decoration: none;
-    padding: 10px 15px;
-    display: flex;
-    align-items: center;
-    font-family: 'Montserrat', sans-serif;
-    padding: 20px;
-}
-
-.options a::after{
-    content: "";
-    position: absolute;
-    background-color: #ffffff;
-    height: 3px;
-    width: 0;
-    left: 0;
-    bottom: -10px;
-    transform: scaleX(0);
-    transition: transform 0.6s;
-
-}
-.options a:hover{
-    color: #000000;
-}
-.options a:hover:after{
-    width: 100%;
-    transform: scaleX(1);
-
-}
-.classes{
-    width: 170px;
-    height: 600px;
-    border-radius: 4px;
-    padding: 10px;
-    margin: 10px;
-    margin-top: 40px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
-    background-color: rgb(255, 221, 158);
-}
-.searchbar{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-}
-.searchbar input[type=text]{
-    height: 40px;
-    width: 500px;
-    border-radius: 50px;
-    font-size: 20px;
-    font-family:'Montserrat', sans-serif;
-}
-.searchbar button {
-    height: 40px;
-    width: 40px;
-    background-color: #3eed81b9;
-    cursor: pointer;
-    border-radius: 50px;
-    float: right;
-    margin-left: 5px;
-}
-
-.searchresult{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-th {
-    border: 1px solid black;
-    background: rgb(12, 90, 72);
-    color: #f3f3f3;
-  }
-
-th, td{
-    width:365px;
-    padding:8px;
-    border: 1px solid ;
-    text-align: center;
-}
-
-.table-result{
-    border-collapse:separate;
-    border-spacing:0 15px;
-    margin-right: 50px;
-    
-}
-.results{
-    flex-direction: column;
-}
-.result-fail{
-    font-size: 22px;
-    color: red;
-
-}
-
         </style>
 </head>
 <body>
 
-    <div class="searchbar">
-        <form method="post">
-            <input type="text" placeholder=" Search for classes" name="search">
-            <button name="submit"></button>
-        </form>
+<body>
     </div>
-    <div class="searchresult">
-        <table class="table-result">
-        <?php
-            if(isset($_POST['submit'])){
-                $search=$_POST['search'];
+    
 
-                $sql="SELECT * from class 
-                where ClassName like '%$search%'";
-                $result=mysqli_query($conn,$sql);
+</div>
 
-                          
-                if($result){
-                    if(mysqli_num_rows($result)>0){
-                        echo '<thead>
-                        <tr>
-                        <th>Class Name</th>
-                        <th> Description</th>
-                        <th>ID</th>
-                        </tr>
-                        </thead>';
+<div class="searchbar">
+    <form method="post">
+        <input type="text" placeholder=" Search for classes" name="search">
 
-                        while($row=mysqli_fetch_assoc($result)){
-                        echo '<tbody>
-                        <tr>
-                        <td>'.$row['ClassName'].'</td>
-                        <td>'.$row['ClassDesc'].'</td>
-                        <td>'.$row['ClassID'].'</td>
-                        </tr>
-                        <tbody>';
-                        }
-                     }else{
-                        echo "<div class='result-fail'>";
-                             echo'<h2>Sorry, we can\'t find what you were looking for :(</h2>';
-                        echo "</div>";
+        <button name="submit">
+            <img src="../images/search.png">
+        </button>
+    </form>
+</div>
+
+<div class="searchresult">
+    <?php
+        if(isset($_POST['submit'])){
+            $search=$_POST['search'];
+
+            $sql= "SELECT * from class 
+            where (ClassName like '%$search%' 
+            or ClassID like '%$search%')
+            AND TeacherID = '$teacher_id'";
+            $result=mysqli_query($conn,$sql);
+
+            if($result){
+                if(mysqli_num_rows($result)>0){
+
+                    while($row=mysqli_fetch_assoc($result))
+                    {
+                       
+                        
+    ?>
+        <form action="class.php" method="get">
+            
+                <?php echo "<a class='classlink' href='../teacher/viewchapter.php?ClassID={$row['ClassID']}'>";?>
+                    <div class="box">
+                        <div class="image">
+                            <img src="<?php echo $row['ClassDashboard']; ?>" alt="img">
+                        </div>
+                        <div class="difficulty"><?php echo $row['ClassDiff'];?></div>
+                        <div class="data">
+                            <br>
+                            <div class="className"><b><?php echo $row['ClassName'];?></div></b>
+                            <div class="description"><?php echo $row['ClassDesc'];?></div>                                
+                        </div>    
+                    </div>    
+                <?php "</a>";?>
+           
+        </form>
+    <?php
                     }
                 }
-            }
-                        
-        ?>
-        </table>
-    </div>
+            }  
+        }      
+    ?>
+</div> 
 </body>
 </html>
 

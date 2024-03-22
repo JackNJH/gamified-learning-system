@@ -87,34 +87,34 @@ h2 {
     <div class="container">
         <h1>EDIT CLASS</h1>
         <h2>RE-ENTER CLASS DETAILS</h2>
-        <form class="class-form">
+        <form class="class-form" action="uploadclassedit.php" method="post" enctype="multipart/form-data">
             <label for="class-name">Class name:</label>
-            <input type="text" id="class-name" required>
+            <input type="text" id="class-name" name="class_name" required>
 
             <label for="description">Description:</label>
-            <textarea id="description" required></textarea>
+            <textarea id="description" name= "description" required></textarea>
 
             <label for="dashboard-design">Insert Dashboard Design:</label>
-            <input type="file" id="pic" accept="image/*">
+            <input type="file" id="pic" name="dashboard_design" accept="image/*">
 
             <label for="difficulty">Difficulty:</label>
-            <select id="difficulty">
+            <select id="difficulty" name="difficulty">
                 <option value="easy">Easy</option>
                 <option value="medium">Medium</option>
                 <option value="hard">Hard</option>
             </select>
 
             <label for="privacy">Privacy:</label>
-            <select id="privacy">
+            <select id="privacy" name="privacy">
                 <option value="public">Public</option>
                 <option value="private">Private</option>
             </select>
 
             <label for="Insert-Badge">Insert Class Completion Badge:</label>
-            <input type="file" id="pic" accept="image/*">
+            <input type="file" id="pic" name="class_badge" accept="image/*">
 
             <label for="class-code">Private class code:</label>
-            <input type="text" id="class-code" required>
+            <input type="text" id="class-code" name="class_code" required>
 
             <button type="cancel">Cancel</button>
             <button type="submit">Save</button>

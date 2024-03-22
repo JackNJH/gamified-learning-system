@@ -16,7 +16,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Chapter</title>
     <link rel="stylesheet" href="styles.css">
-    <style>body {
+    <style>
+    body {
     font-family:'Montserrat', sans-serif;
     line-height: 1.6;
 }
