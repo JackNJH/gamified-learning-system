@@ -1,0 +1,220 @@
+.navi-bar{
+    width: 210px;
+    height: 100%;
+    background: orange;
+    top: 0;
+    left: 0;
+    padding: 10px 20px;
+    margin-top: 60px;
+    position: absolute;
+}
+.options{
+    
+    margin-top: 80px;
+    font-size: 20px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+
+}
+
+
+.options a{
+    color: #000000;
+    position: relative;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px;
+}
+
+.options a::after{
+    content: "";
+    position: absolute;
+    background-color: #ffffff;
+    height: 3px;
+    width: 0;
+    left: 0;
+    bottom: -10px;
+    transform: scaleX(0);
+    transition: transform 0.6s;
+
+}
+.options a:hover{
+    color: #000000;
+}
+.options a:hover:after{
+    width: 100%;
+    transform: scaleX(1);
+
+}
+.classes{
+    width: 180px;
+    height: 600px;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px;
+    margin-top: 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    background-color: rgb(255, 221, 158);
+}
+
+.content{
+    position: sticky;
+    width: 72%;
+    height: 700px;
+    border-radius: 5px;
+    margin-left: 20%;
+    margin-top: 70px;
+    margin-bottom: 60px;
+    background-color: #000000;
+   
+
+}
+.design{
+    width: 50%;
+    height: 100%;
+    background-color: orange;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font: bold 23px 'Montserrat', sans-serif;
+}
+
+.design img{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+
+}
+.title{
+    position: absolute;
+    width: auto;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.548);
+    box-shadow: 0 5px 15px rgba(0, 0, 0,.5);
+    word-wrap: break-word;
+    align-items: center;
+   
+}
+.chapters{
+    width: 50%;
+    height: 700px;
+    background-color: #f8e7c2;
+    float: right;
+}
+.badge{
+    position: absolute;
+    top: 70px;
+    left: 300px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border-color: #000000;
+    background-color: aqua;
+    display: grid;
+    align-items: center;
+    text-align: center;
+    font: 23px 'Montserrat', sans-serif;
+
+}
+.badge img{
+    width: 200px;
+    height: 200px;
+    object-fit: fill;
+    border-radius: 50%;
+}
+.completion{
+    display: grid;
+    align-items: center;
+    text-align: center;
+    margin-top: 45px;
+    font: bold 20px 'Montserrat', sans-serif;
+}
+.progress{
+    position: relative;
+    width: 62%;
+    height: 30px;
+    background: #b8b8b8;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-top: 15px;
+    margin-left: 140px;
+}
+.progressfill{
+    width: 50%;
+    height: 100%;
+    background:#63f700;
+}
+.progresstext{
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    font: bold 14px 'Montserrat', sans-serif;
+    color: #ffffff;
+}
+.ChapSelect{
+    padding: 15px;
+    transition: 0.3s;
+}
+.ChapSelect:hover {
+    transform: scale(1.08);
+}
+.selection{
+    
+    width: 80%;
+    height: 50px;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-left: 55px;
+    display: grid;
+    align-items: center;
+    text-align: center;
+    font: 20px 'Montserrat', sans-serif;
+}
+.leaderboard{
+    width: 400px;
+    height: 60px;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 6px;
+    margin: auto;
+    background:#f8e7c2;
+    text-align: center;
+    font: 20px 'Montserrat', sans-serif;
+    display: grid;
+    align-items: center;
+    text-align: center;
+
+}
+
+.class-form button {
+    padding: 0.7rem;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 15rem;
+    justify-self: center;
+    margin: 0.5rem auto;
+  }
+  
+  .class-form button[type="cancel"] {
+    justify-self: start;
+    margin-right: auto;
+  }
+  
+  .class-form button:hover {
+    background-color: darkorange;
+  }
+  .class-form {position: absolute;
+      bottom: 2%;
+      right: 25%;}
