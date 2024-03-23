@@ -115,7 +115,7 @@
         }
 
         .dropdown-content a:hover {
-            background-color: #f1f1f1;
+            background-color: #E8E8E8;
         }
 
         .username:hover .dropdown-content {
@@ -163,7 +163,7 @@
                 <a href="../teacher/myclasses.php" class="button">My Classes</a>
             <?php elseif ($role === 'student'): ?>
                 <a href="../student/searchclasses.php" class="button">Search Classes</a>
-                <a href="../student/helpme.php" class="button">Help Me</a>
+                <a href="../student/FAQ.php" class="button">Help Me</a>
             <?php endif; ?>
         <?php endif; ?>
     </div>
