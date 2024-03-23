@@ -107,7 +107,7 @@ h2 {
         <h1>EDIT CLASS</h1>
         <h2>RE-ENTER CLASS DETAILS</h2>
         <form class="class-form"  action="uploadclassedit.php" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="ClassID" value="<?php $ClassID ?>">
+            <input type="hidden" name="ClassID" value="<?php echo $ClassID; ?>">
             <label for="class-name">Class name:</label>
             <input type="text" id="class-name" name="class_name" value="<?php echo $class_data['ClassName']; ?>" required>
 
@@ -130,8 +130,11 @@ h2 {
                 <option value="private">Private</option>
             </select>
 
-            <!-- <label for="Insert-Badge">Insert Class Completion Badge:</label>
-            <input type="file" id="pic" name="class_badge" accept="image/*"> -->
+            <label for="Insert-Badge">Insert Class Completion Badge:</label>
+            <input type="file" id="pic" name="class_badge" accept="image/*">
+
+            <label for="badge-name">Badge name:</label>
+            <input type="text" id="class-code" name="badge_name" required>
 
             <label for="class-code">Private class code:</label>
             <input type="text" id="class-code" name="class_code" value="<?php echo $class_data['ClassCode']; ?>" required>
