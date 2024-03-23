@@ -6,11 +6,6 @@
         die;
     }
 
-    // $ClassID = isset($_GET['ClassID']) ? $_GET['ClassID'] : '';
-
-    // if ($ClassID === '') {
-    //     die("Class ID not provided or invalid.");
-    // }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $ClassID = $_POST['ClassID'];
@@ -109,14 +104,6 @@
                 WHERE ClassID='$ClassID'";
         
 
-
-        // $result = mysqli_query($conn, $sql);
-
-        
-            // echo "<script>alert('Successfully updated info!');window.location.href='index.php';</script></script>";
-    
-       
-            // echo "<script>alert('Fail to update information!');</script>";
             if (!mysqli_query($conn,$sql)) {
                 die('Error! '.mysqli_error($conn));
             }
