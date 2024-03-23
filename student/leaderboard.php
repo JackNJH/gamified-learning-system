@@ -112,7 +112,12 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
 
                         //figure out badge showing sql
                         echo "<tr>";
-                        echo "<td class='pfp'><img src='".$row['UserPFP']."'></td>";
+                        if (!empty($row['UserPFP'])){
+                            echo "<td class='pfp'><img src='".$row['UserPFP']."'></td>";
+                        }
+                        else{
+                            echo "<td class='pfp'><img src='../images/guestPFP.png'></td>";
+                        }
                         echo "<td>".$row['UserName']."</td>";
 
                         $B1 = $row['SelectedBadge1'];
@@ -135,15 +140,33 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
                         $GetBadge1 = mysqli_query($conn,$Badge1);
                         $GetBadge2 = mysqli_query($conn,$Badge2);
                         $GetBadge3 = mysqli_query($conn,$Badge3);
-                        while($ShowBadge = mysqli_fetch_assoc($GetBadge1)){
-                            echo "<td class='leaderboard-badge'><img src='".$ShowBadge['BadgePic']."'></td>";
+                        if(!is_null($B1)){
+                            while($ShowBadge = mysqli_fetch_assoc($GetBadge1)){
+                                echo "<td class='leaderboard-badge'><img src='".$ShowBadge['BadgePic']."'></td>";
+                            }
                         }
-                        while($ShowBadge = mysqli_fetch_assoc($GetBadge2)){
-                            echo "<td class='leaderboard-badge'><img src='".$ShowBadge['BadgePic']."'></td>";
+                        else{
+                            echo "<td class='leaderboard-badge'><img src='../images/badgePlaceholder.png'></td>";
+                            }                            
+                        
+                        if(!is_null($B2)){
+                            while($ShowBadge = mysqli_fetch_assoc($GetBadge2)){
+                                echo "<td class='leaderboard-badge'><img src='".$ShowBadge['BadgePic']."'></td>";
+                            }
                         }
-                        while($ShowBadge = mysqli_fetch_assoc($GetBadge3)){
-                            echo "<td class='leaderboard-badge'><img src='".$ShowBadge['BadgePic']."'></td>";
+                        else{
+                            echo "<td class='leaderboard-badge'><img src='../images/badgePlaceholder.png'></td>";
+                            }                            
+                            
+                        if(!is_null($B3)){
+                            while($ShowBadge = mysqli_fetch_assoc($GetBadge3)){
+                                echo "<td class='leaderboard-badge'><img src='".$ShowBadge['BadgePic']."'></td>";
+                            }
                         }
+                        else{
+                            echo "<td class='leaderboard-badge'><img src='../images/badgePlaceholder.png'></td>";
+                            }                            
+                            
                         // echo "<td>".$B1."</td>";
                         // echo "<td>".$row['SelectedBadge2']."</td>";
                         // echo "<td>".$row['SelectedBadge3']."</td>";
