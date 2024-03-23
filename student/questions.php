@@ -6,9 +6,20 @@
     }
 
     include '../components/header.php'; // Header
+    $data = isset($_GET['chapter_id']) ? $_GET['chapter_id'] : '';
+    
+    
+    $join = "SELECT `answers`.*, `question`.*, `level`.`ChapterID`
+            FROM `answers` 
+            LEFT JOIN `question` ON `answers`.`QuestionID` = `question`.`QuestionID` 
+            LEFT JOIN `level` ON `question`.`LevelID` = `level`.`LevelID` 
+             WHERE `level`.`ChapterID` = '$data'";
+         
+    $joinresult = mysqli_query($conn, $join);
 
+    $sql1 = "SELECT * FROM chapter WHERE ChapterID= '$data'";
+    $result1 = mysqli_query($conn,$sql1);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,74 +41,57 @@
         </div>
     </div>  
 
-    <div class="header">Chapter 1</div>
+    <?php while($row1=mysqli_fetch_assoc($result1))
+        {                    
+    ?>
+        
+        <div class="header"><?php echo $row1['ChapterName'];?></div>
+    <?php
+        }
+    ?>
     <div class="wrapper">
         <div class="main">
             <div class="header2">Answer the questions to get points</div>
-            <div class="questions">
-                <p>Q1. 1+1 = ?</p>
-                    <form>
-                        <input type="radio" id="lvl1" name="level-option" value="lvl1" />
-                        <label for="lvl1">2</label>
-                        <br>
-                        <br>
-                        <input type="radio" id="lvl2" name="level-option" value="lvl2">
-                        <label for="lvl1">3</label>
-                        <br>
-                        <br>
-                        <input type="radio" id="lvl3" name="level-option" value="lvl3">
-                        <label for="lvl1">4</label>
-                        <br>
-                        <br>
-                        <input type="radio" id="lvl3" name="level-option" value="lvl3">
-                        <label for="lvl1">No ans</label>
-                    </form>
-                <br>
-                <p>Q2. what is the color of carrot </p>
-                    <form>
-                        <input type="radio" id="lvl1" name="level-option" value="lvl1" />
-                        <label for="lvl1">lster</label>
-                        <br>
-                        <br>
-                        <input type="radio" id="lvl2" name="level-option" value="lvl2">
-                        <label for="lvl1">orange</label>
-                        <br>
-                        <br>
-                        <input type="radio" id="lvl3" name="level-option" value="lvl3">
-                        <label for="lvl1">2</label>
-                        <br>
-                        <br>
-                        <input type="radio" id="lvl3" name="level-option" value="lvl3">
-                        <label for="lvl1">no ans</label>
-                    </form>
-                <br>
-                <p>Q3. 3 x 2 = ? </p>
-                    <form>
-                        <input type="radio" id="lvl1" name="level-option" value="lvl1" />
-                        <label for="lvl1">6</label>
-                        <br>
-                        <br>
-                        <input type="radio" id="lvl2" name="level-option" value="lvl2">
-                        <label for="lvl1">8</label>
-                        <br>
-                        <br>
-                        <input type="radio" id="lvl3" name="level-option" value="lvl3">
-                        <label for="lvl1">20</label>
-                        <br>
-                        <br>
-                        <input type="radio" id="lvl3" name="level-option" value="lvl3">
-                        <label for="lvl1">no ans</label>
-                    </form>
-                    <br>
-            </div>
-        </div>
-        <div class="back">
-            <a href="levels.php">&#8592; Levels</a>
-        </div>
-        <div class="next">
-            <a href="review.php">Finish</a>
-        </div>
-    </div>
+            
+            <form action="../student/score?chapter_id=<?php echo $data; ?>" method="post">
+                <div class="container">
+                    <?php
+                    $currentQuestion = null;
+                    $questionNumber = 1;
 
+                    if (mysqli_num_rows($joinresult) > 0) {
+                        while ($row = mysqli_fetch_assoc($joinresult)) {
+                            if ($currentQuestion == null || $currentQuestion['QuestionID'] != $row['QuestionID']) {
+                                if ($currentQuestion != null) {
+                                    echo '</div>';
+                                }
+                                $currentQuestion = $row;
+                                ?>
+                                <div class="question">
+                                    <br>
+                                    <div class="questionTitle">Q<?= $questionNumber ?>. <?= $row["QuestionText"] ?></div>
+                                    <?php echo "</br>";?>
+                                </div>
+                            <?php
+                                $questionNumber++;
+                            }
+                            ?>
+                            <div class="AnswerSelection">
+                                <input type="radio" class="form-check-input" name="checkanswer[<?php echo $row['QuestionID']; ?>]" value="<?php echo $row['AnswerID']; ?>">
+                                 <?php echo $row['AnswerText']; ?>
+                            </div>
+                      <?php
+                        }
+                    }
+                    ?>
+                </div>
+                <div class="quiz">
+                    <input type="submit" name="answer-submit">                   
+                </div>
+            </form>
+
+    </div>
+    <button class ="back" onclick="history.back()">&#8592; Chapters</button>
+        
 </body>
 </html>
