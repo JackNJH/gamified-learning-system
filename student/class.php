@@ -7,12 +7,16 @@
 
     include '../components/header.php'; // Header
     
-    $data = isset($_GET['ClassID']) ? $_GET['ClassID'] : '';
+    $data = isset($_GET['class_id']) ? $_GET['class_id'] : '';
+
+
 
     if ($data === '') {
         // Handle case when user_id is not provided or invalid
         die("User ID not provided or invalid.");
     }
+
+    $_SESSION['class_id'] = $data;
 
     $sql1 = "SELECT * FROM class WHERE ClassID= '$data'";
     $result1 = mysqli_query($conn,$sql1);
@@ -62,17 +66,19 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
             while($row = mysqli_fetch_assoc($result1)){
         ?>
         <div class="classes">
-            <?php
+        <?php
+                $currentPage = $_SERVER['REQUEST_URI'];
+
                 if (isset($_SESSION['recent_pages'])) {
-                    echo "<h3>Recently Visited Pages:</h3>";
-                    echo "<ul>";
-                    foreach ($_SESSION['recent_pages'] as $page) {
-                    echo "<li><a href='$page'>$page</a></li>";
-                    }
-                    echo "</ul>";
-                 } else {
-                    echo "<p>No recent pages available.</p>";
+                    $_SESSION['recent_pages'] = array();
                 }
+
+                if(!in_array($currentPage, $_SESSION['recent_pages'], TRUE)){
+                    array_unshift($_SESSION['recent_pages'], $currentPage);
+                }
+
+                $maxPages = 5;
+                $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
             ?>
         </div>
     </div>
@@ -94,6 +100,7 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
         ?> 
           
             <div class="chapters">
+                <div class="textTitle">Select a chapter to begin</div>
                  <?php
                     while($row = mysqli_fetch_assoc($result3)){
                  ?> 
@@ -102,8 +109,7 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
                             <div class="selection">
                                 <div class="ChapTitle"><b><?php echo $row['ChapterName'];?></div></b>
                             </div>
-                        <?php echo "</a>";?>
-                    </div>
+                     </div>
                 <?php
                     } 
                 ?>     
@@ -117,13 +123,10 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
         </div>
         <?php
             } 
-        ?>
-
-        <div>
-            <?php 
-            echo "<a href='leaderboard.php?ClassID=".$_GET['ClassID']."' class='leaderboard'>Class Leaderboard</a>";  
-            ?>
-        </div>
+        ?>   
+         <div class="leaderboard">
+            <a href="../student/leaderboard?ClassID=<?php echo $data; ?>"class = "situation">Leaderboard</a>
+         </div>
         
     </div>
 </body>
