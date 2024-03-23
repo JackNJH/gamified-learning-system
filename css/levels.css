@@ -81,7 +81,7 @@
     display: flex;
     flex-direction: column;
 }
-.hidden-radio{display:none;}
+
 .list{
     width: 160px;
     height: 200px;
@@ -90,7 +90,7 @@
     position: absolute;
     left: 17%;
     top: 48%;
-    font: 21px 'Montserrat', sans-serif;
+    font: 22px 'Montserrat', sans-serif;
     display: grid;
     align-items: center;
     text-align: center;
@@ -98,11 +98,33 @@
    
 
 }
-.selection button{
-    width: 100px;
+input[type=submit]{
+    background-color: orange;
+    width: 30px;
     height: 30px;
-    background-color: rgb(255, 221, 158);
+    border-radius: 50%;
+    cursor: pointer;
+    font: 18px 'Montserrat', sans-serif;
+
+}
+input[type=submit]:hover{
+    background-color: rgb(66, 180, 0);
+    font-weight: bold;
+    color: white;
+}
+.text{
+    font-size: 31px;
+    margin-bottom: 25px;
+   
     
+}
+.content img{
+
+    width: 800px;
+    height: 320px;
+}
+.LevelContent{
+    padding: 30px;
 }
 
 .guide{
@@ -137,22 +159,31 @@
     font: 20px 'Montserrat', sans-serif;
 }
 .next{
-    width: fit-content;
-    height: fit-content;
-    padding: 10px 20px;
-    position: absolute;
     bottom: 0;
     right: 30%;
-    background-color: bisque;
-    color: black;
-    border: none;
-    border-radius: 8px;
-    text-decoration: none;
-    cursor: pointer;
+    position: absolute;
+    width: 180px;
+    height: 40px;
+    border-radius: 6px;
+    margin: auto;
+    background:#f8e7c2;
+    color: #000000;
     font: 20px 'Montserrat', sans-serif;
+    border: none;
+    display: grid;
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+}
+.classlink{
+    text-decoration: none;
 }
 .back:hover, .next:hover{
     background-color: rgb(66, 180, 0);
     font-weight: bold;
+    color: white;
+    
+}
+.classlink:hover{
     color: white;
 }
