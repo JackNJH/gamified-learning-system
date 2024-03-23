@@ -8,9 +8,9 @@
     include '../components/header.php'; // Header
 // all header included are in the components folder
 
-    $sql = "SELECT * FROM class LEFT JOIN classprogress ON classprogress.ClassID = class.ClassID
-    WHERE TeacherID='$teacher_id'
-    ORDER BY ProgressPoints ASC";
+    $sql = "SELECT * FROM class 
+    WHERE class.TeacherID='$teacher_id' 
+    ORDER BY class.ClassCreateDate DESC";
         
     $result=mysqli_query($conn,$sql);
 ?>

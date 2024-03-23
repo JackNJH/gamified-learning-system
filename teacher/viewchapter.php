@@ -55,18 +55,39 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Class </title>
     <link rel="stylesheet" href="../css/teacherchapter.css">
+    <style>
+        /* ...existing styles... */
+
+        .situation {
+            display: inline-block;
+            padding: 0.7rem;
+            background-color: orange;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 0.5rem;
+            text-decoration: none;
+        }
+
+        .situation:hover {
+            background-color: darkorange;
+        }
+        .button-wrapper {
+    display: flex;
+    justify-content: center;
+}
+    </style>
 </head>
 <body>
    
-        <div class="options">
+    <div class="options">
 
-        </div>
-        
-        <?php
-            while($row = mysqli_fetch_assoc($result1)){
-        ?>
-
-   
+    </div>
+    
+    <?php
+        while($row = mysqli_fetch_assoc($result1)){
+    ?>
 
     <div class="main">
         
@@ -109,14 +130,12 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
         <?php
             } 
         ?>
- 
-            <div>
-            <a href="../teacher/editclass.php?ClassID=<?php echo $data; ?>" class="situation">Edit Class</a>
-            <a href="../teacher/reviewstudents.php?ClassID=<?php echo $data; ?>" class="situation">Review Student</a>
-            <a href="../teacher/createchapter.php?ClassID=<?php echo $data; ?>" class="situation">Add Chapter</a>
-            <a href="../teacher/deleteclass.php?ClassID=<?php echo $data; ?>" class="situation">Delete Class</a>
-            </div>
-            </form>
+        <form class="jason" style="text-align: center;">
+    <a href="../teacher/editclass.php?ClassID=<?php echo $data; ?>" class="situation">Edit Class</a>
+    <a href="../teacher/reviewstudents.php?ClassID=<?php echo $data; ?>" class="situation">Review Student</a>
+    <a href="../teacher/createchapter.php?ClassID=<?php echo $data; ?>" class="situation">Add Chapter</a>
+    <a href="../teacher/deleteclass.php?ClassID=<?php echo $data; ?>" class="situation">Delete Class</a>
+    </form>
         
     </div>
 </body>
