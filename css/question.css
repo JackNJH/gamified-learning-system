@@ -78,10 +78,10 @@
 }
 
 .main{
-    width: 1410px;
+    width: 1060px;
     height: 750px;
     border-radius: 12px;
-    margin-left: 20%;
+    margin-left: 30%;
     margin-top: 20px;
     margin-bottom: 60px;
     background-color: rgb(255, 221, 158);
@@ -90,7 +90,7 @@
 }
 .header2{
     width: 100%;
-    height: 40px;
+    height: 90px;
     border-radius: 12px;
     background-color: rgb(91, 100, 41);
     font: 21px 'Montserrat', sans-serif ;
@@ -100,16 +100,7 @@
     text-align: center;
 
 }
-.questions{
-    width: 1410px;
-    height: 200px;
-    position: absolute;
-    left: 1%;
-    top: 2%;
-    font: 21px 'Montserrat', sans-serif;
-    padding: 5px;
-    
-}
+
 .back{
     width: fit-content;
     height: fit-content;
@@ -140,7 +131,87 @@
     cursor: pointer;
     font: 20px 'Montserrat', sans-serif;
 }
+.situation{
+    text-decoration: none;
+}
 .back:hover, .next:hover{
+    background-color: rgb(66, 180, 0);
+    font-weight: bold;
+    color: white;
+}
+
+.situation:hover{
+    color: white;
+    font: bold;
+}
+.questionTitle{
+    font: bold 25px 'Montserrat', sans-serif;
+    margin-left: 20px;
+    
+}
+.AnswerSelection{
+    font: 22px 'Montserrat', sans-serif;
+    margin-left: 20px;
+    padding: 5px;
+}
+
+.AnswerDisplay{
+    font: 22px 'Montserrat', sans-serif;
+
+}
+.correct{
+    width: fit-content;
+    height: fit-content;
+    background-color: greenyellow;
+}
+.testscore{
+    width: 200px;
+    height: 200px;
+    background-color: rgb(66, 180, 0);
+    font: bold 60px 'Montserrat', sans-serif;
+    margin: auto;
+}
+input[type=submit]{
+    
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+    position: absolute;
+    bottom: 0;
+    right: 30%;
+    background-color: bisque;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    font: 20px 'Montserrat', sans-serif;
+}
+
+input[type=submit]:hover{
+    
+    background-color: rgb(66, 180, 0);
+    color: #ffffff;
+    font: bold;
+}
+.final{
+    width: 200px;
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    right: 40%;
+    background-color: bisque;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    font: 20px 'Montserrat', sans-serif;
+    display: grid;
+    text-align: center;
+    align-items: center;
+}
+.final:hover{
     background-color: rgb(66, 180, 0);
     font-weight: bold;
     color: white;
