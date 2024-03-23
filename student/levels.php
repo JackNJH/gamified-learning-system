@@ -57,9 +57,10 @@
             <?php while($row=mysqli_fetch_assoc($result))
                  {                    
             ?>
+                
                 <form method="POST">
-                    Level
-                    <input type="submit" value="<?php echo $row['LevelID'];?>" name="mybutton">
+                    Level    
+                    <input type="submit" value="<?php echo $row['LevelValue'];?>" name="mybutton">
                 </form>
             <?php
                 }
@@ -69,28 +70,36 @@
 
         
         <div class="guide">
+            
             <?php
             if(isset($_POST['mybutton'])){
                 $level = $_POST['mybutton'];
-                $sql2 = "SELECT * FROM `level` WHERE LevelID= '$level'";
+                $sql2 = "SELECT * FROM `level` WHERE LevelValue= '$level' AND ChapterID= '$data'";
                 $result2 = mysqli_query($conn,$sql2);
                     while($row=mysqli_fetch_assoc($result2))
                     {              
-            
-                        echo $row['LevelContent'];
+            ?>          
+                    <div class="content">
+                    <div class="text"><u>&nbsp;&nbsp;&nbsp;Content&nbsp;&nbsp;&nbsp;</u></div>
+                         <img src="<?php echo $row["LevelPic"]; ?>" alt="pic"> 
+                         <br>
+                        <div class="LevelContent"><?php echo $row['LevelContent'];?></div>
+                    </div>
+            <?php            
                     }
                 }
             ?>
         </div>
 
        
-        <button class ="back" onclick="history.back()">&#8592; Chapters</button>
-      
-        <div class="next">
-            <a href="questions.php">Questions &#8594;</a>
-        </div>
+        
 
     </div>
-    
+    <button class ="back" onclick="history.back()">&#8592; Chapters</button>
+      
+        <div class="next">
+            <?php echo "<a class='classlink' href='../student/questions?chapter_id={$data}'>";?>
+            Questions &#8594;
+        </div>
 </body>
 </html>
