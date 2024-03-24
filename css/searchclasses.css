@@ -153,4 +153,8 @@
 .classlink {
     text-decoration: none; 
 }
+.result-fail{
+    font-size: 22px;
+    color: black;
 
+}
