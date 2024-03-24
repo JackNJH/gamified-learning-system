@@ -88,6 +88,10 @@
             </form>
         <?php
                         }
+                    }else{
+                        echo "<div class='result-fail'>";
+                            echo'<h2>Sorry, we can\'t find what you were looking for :(</h2>';
+                        echo "</div>";
                     }
                 }  
             }      
