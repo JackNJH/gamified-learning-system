@@ -195,7 +195,7 @@
 
 }
 
-.class-form button {
+.sitaution button {
     padding: 0.7rem;
     background-color: orange;
     color: white;
@@ -207,14 +207,15 @@
     margin: 0.5rem auto;
   }
   
-  .class-form button[type="cancel"] {
+  .sitaution button[type="cancel"] {
     justify-self: start;
     margin-right: auto;
   }
   
-  .class-form button:hover {
+  .sitaution button:hover {
     background-color: darkorange;
   }
-  .class-form {position: absolute;
+  .sitaution {position: absolute;
       bottom: 2%;
       right: 25%;}
+
