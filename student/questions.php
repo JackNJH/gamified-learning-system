@@ -34,10 +34,18 @@
             <a href="index.php"><b>Student menu</a></b>
         </div>
         <div class="classes">
-            <p>Recently Joined classes</p>
-            <div class="options">
-                <a href="chapter.php">CLASS A</a>
-            </div>
+        <?php
+                if (isset($_SESSION['recent_pages'])) {
+                    echo "<h3>Recently Visited Pages:</h3>";
+                    echo "<ul>";
+                    foreach ($_SESSION['recent_pages'] as $page) {
+                    echo "<li><a href='$page'>$page</a></li>";
+                    }
+                    echo "</ul>";
+                 } else {
+                    echo "<p>No recent pages available.</p>";
+                }
+            ?>
         </div>
     </div>  
 
