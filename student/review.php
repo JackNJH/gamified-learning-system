@@ -61,11 +61,11 @@
                 
                 if ($score == 0 && $attempt == 0) { ?>
                     <div class="AttemptedQuestion">No Question Attempted</div>
-                    <div class="FinalScore">You Score is : <?php echo $score; ?></div>  
+                    <div class="FinalScore">Your Score is : <?php echo $score; ?></div>  
 
             <?php }else { ?> 
                 <div class="message">
-                    <div class="AttemptedQuestion">You have attempted <?php echo $attempt; ?> questions</div>
+                    <div class="AttemptedQuestion"><?php echo $attempt; ?> Questions Attempted</div>
                     <div class="FinalScore">You Score: <?php echo $score; ?></div><span class="badge text-bg-primary"> You Answered <?php echo $correct; ?> Questions Correctly!</span>
                 </div>
 
@@ -83,29 +83,31 @@
                                     echo '</div>';
                                 }
                                 $currentQuestion = $row;
-                                ?>
-                                <div class="question">
-                                    <br>
-                                    <div class="questionTitle">Q<?= $questionNumber ?>. <?= $row["QuestionText"] ?></div>
-                                    <?php echo "</br>";?>
-                                
-                                    <?php
-                                        $questionNumber++;
-                                    }
-                                    ?>
-                                    <div class="AnswerDisplay">
-                                        <?php
-                                            if ($row['CorrectAnswer'] == $row['AnswerID']){                           
+                    ?>
+                    <div class="question">
+                        <br>
+                        <div class="questionTitle">Q<?= $questionNumber ?>. <?= $row["QuestionText"] ?></div>
+                            <?php echo "</br>";?>
+                            <?php
+
+                            $questionNumber++;
+                            }
+
+                            ?>
+                            <div class="AnswerDisplay">
+                                <?php
+
+                                    if ($row['CorrectAnswer'] == $row['AnswerID']){                           
                                             
-                                        ?>
-                                            <div class="correct">Answer: <?php echo $row['AnswerText'];?></div>
-                                    </div>            
-                                                <?php
-                                                    }
-                                                }
-                                            }
-                                                    ?>
-                                </div>
+                                ?>
+                                <div class="correct">Answer: <?php echo $row['AnswerText'];?></div>
+                            </div>            
+                                    <?php
+                                    }
+                        }
+                    }
+                                    ?>
+                        </div>
                 </div>          
         </div>  
     </div>

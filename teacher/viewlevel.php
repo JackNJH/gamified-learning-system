@@ -7,6 +7,11 @@
 
     include '../components/header.php'; // Header
 
+    $data = isset($_GET['chapter_id']) ? $_GET['chapter_id'] : '';
+    if ($data === '') {
+        // Handle case when user_id is not provided or invalid
+        die("User ID not provided or invalid.");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -162,11 +167,12 @@
     </div>
 </div><br>
 <div style="margin-left:400px; padding-bottom:20px;"> 
-        <button type="submit" class="btn-chapter" > &#9664; Chapters</button> 
+        <?php echo "<a href='viewchapterbackup.php?ClassID=".$data."' type='submit' class='btn-chapter' > &#9664; Chapters</a>"; ?>
         <button type="submit" class="btn-edit-level" >Edit Level</button>
         <button type="submit" class="btn-add-level" >Add Level</button>
         <button type="submit" class="btn-delete-level" >Delete Level</button>
-        <button type="submit" class="btn-questions" >Questions &#9654;</button>
+        <!-- <button type="submit" class="btn-questions" >Questions &#9654;</button> -->
+        <?php echo "<a href='viewquestions.php?ClassID=".$data."' type='submit' class='btn-questions' >Questions &#9654;</a>"; ?>
 </div>
 </body>
 </html>

@@ -148,7 +148,7 @@
             </div>
         </div>
     </div>
-    <button type="cancel" class="button-level">Level</button>
+    <a href='viewlevel?=$data' type="cancel" class="button-level">Level</a>
         <button type="submit" class="button-submit" >Create Questions</button><br>
 </body>
 </html>

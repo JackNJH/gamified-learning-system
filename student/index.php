@@ -11,6 +11,8 @@
     $sql = "SELECT * FROM class LEFT JOIN classprogress ON classprogress.ClassID = class.ClassID
     WHERE StudentID='$student_id'
     ORDER BY ProgressPoints DESC";
+
+    
         
     $result=mysqli_query($conn,$sql);
 ?>
@@ -45,9 +47,24 @@
                     //make the rows linkable
                     echo "<tr>";
                     echo "<td><img src='".$row["ClassDashboard"]."'></td>";
-                    echo "<td><a href='class.php?ClassID=".$row['ClassID']."'>".$row['ClassName']."</a></td>";
-                    echo "<td><a href='class.php?ClassID=".$row['ClassID']."'>".$row['ClassDesc']."</a></td>";
-                    echo "<td><a href='class.php?ClassID=".$row['ClassID']."'>".$row['ProgressPoints']."/".$row['ClassMaxPoints']."</a></td>";
+                    echo "<td><a href='class?ClassID=".$row['ClassID']."'>".$row['ClassName']."</a></td>";
+                    echo "<td><a href='class?ClassID=".$row['ClassID']."'>".$row['ClassDesc']."</a></td>";
+                    // echo "<td><a href='class?ClassID=".$row['ClassID']."'>";
+
+
+                    // $sqlSUM = "SELECT SUM(ProgressPoints) as [TotalPoints]
+                    // FROM classprogress LEFT JOIN class ON class.ClassID = classprogress.ClassID
+                    // WHERE classprogress.StudentID = '$student_id'
+                    // AND class.ClassID = '".$row['ClassID']."'";
+
+                    // $resultSUM = mysqli_query($conn, $sqlSUM);
+
+                    // while($row2 = mysqli_fetch_array($resultSUM)){
+                    //     echo $row2['TotalPoints'];
+                    // }
+
+                    // echo "/".$row['ClassMaxPoints']."</a></td>";
+                    echo "<td><a href='class?ClassID=".$row['ClassID']."'>".$row['ProgressPoints']."/".$row['ClassMaxPoints']."</a></td>";
                     echo "</tr>";
 
                 }

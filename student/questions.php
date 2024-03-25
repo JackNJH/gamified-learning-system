@@ -62,7 +62,7 @@
                     if (mysqli_num_rows($joinresult) > 0) {
                         while ($row = mysqli_fetch_assoc($joinresult)) {
                             if ($currentQuestion == null || $currentQuestion['QuestionID'] != $row['QuestionID']) {
-                                if ($currentQuestion != null) {
+                                if ($questionNumber > mysqli_num_rows($joinresult)) {
                                     echo '</div>';
                                 }
                                 $currentQuestion = $row;

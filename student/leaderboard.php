@@ -33,25 +33,6 @@
 
 ?>
 
-<?php
-
-
-$currentPage = $_SERVER['REQUEST_URI'];
-
-if (!isset($_SESSION['recent_pages'])) {
-    $_SESSION['recent_pages'] = array();
-}
-
-// Add the current page to the history
-array_unshift($_SESSION['recent_pages'], $currentPage);
-
-// Limit the number of stored pages (optional)
-$maxPages = 5;
-$_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages);
-?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -193,7 +174,7 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
 
         <div>
             <?php 
-            echo "<a href='class.php?ClassID=".$_GET['ClassID']."' class='Chapter-button'>back to Chapters</a>";  
+            echo "<a href='class?ClassID=".$_GET['ClassID']."' class='Chapter-button'>back to Chapters</a>";  
             ?>
         </div>
         

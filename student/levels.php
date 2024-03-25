@@ -80,6 +80,7 @@
                     {              
             ?>          
                     <div class="content">
+                        <!-- change content to LevelTitle if possible -->
                     <div class="text"><u>&nbsp;&nbsp;&nbsp;Content&nbsp;&nbsp;&nbsp;</u></div>
                          <img src="<?php echo $row["LevelPic"]; ?>" alt="pic"> 
                          <br>
@@ -95,7 +96,18 @@
         
 
     </div>
-    <button class ="back" onclick="history.back()">&#8592; Chapters</button>
+    <?php
+        $sqlClass = "SELECT `chapter`.`ClassID`
+        FROM `chapter`
+        WHERE `chapter`.`ChapterID` = '$data'";
+
+        $resultClass = mysqli_query($conn, $sqlClass);
+
+        while($row = mysqli_fetch_assoc($resultClass)){
+            echo "<a href='../student/class?ClassID=".$row['ClassID']."'class ='back'>&#8592; Chapters</a>";
+        }
+
+    ?>
       
         <div class="next">
             <?php echo "<a class='classlink' href='../student/questions?chapter_id={$data}'>";?>

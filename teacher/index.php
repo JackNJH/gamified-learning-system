@@ -8,9 +8,9 @@
     include '../components/header.php'; // Header
 // all header included are in the components folder
 
-    $sql = "SELECT * FROM class 
-    WHERE class.TeacherID='$teacher_id' 
-    ORDER BY class.ClassCreateDate DESC";
+    $sql = "SELECT * FROM class
+    WHERE TeacherID='$teacher_id'
+    ORDER BY ClassCreateDate DESC";
         
     $result=mysqli_query($conn,$sql);
 ?>

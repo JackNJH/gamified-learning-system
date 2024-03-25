@@ -27,17 +27,19 @@
         <div class="classes">
 
         <?php
-                if (isset($_SESSION['recent_pages'])) {
-                    echo "<h3>Recently Visited Pages:</h3>";
-                    echo "<ul>";
-                    foreach ($_SESSION['recent_pages'] as $page) {
-                    echo "<li><a href='$page'>class</a></li>";
-                    }
-                    echo "</ul>";
-                 } else {
-                    echo "<p>No recent pages available.</p>";
+            if (isset($_SESSION['recent_pages'])) {
+                echo "<h3>Recently Visited Pages:</h3>";
+                echo "<ul>";
+                
+                foreach ($_SESSION['recent_pages'] as $page) {
+                    echo "<li><a href='$page'>$page</a></li>";
                 }
-            ?>
+                echo "</ul>";
+            } 
+            else {
+                echo "<p>No recent pages available.</p>";
+            }
+        ?>
         </div>
     </div>
 
@@ -71,7 +73,7 @@
         ?>
             <form action="class.php" method="get">
                 
-                    <?php echo "<a class='classlink' href='../student/class?class_id={$row['ClassID']}'>";?>
+                    <?php echo "<a class='classlink' href='../student/class?ClassID={$row['ClassID']}'>";?>
                         <div class="box">
                             <div class="image">
                                 <img src="<?php echo $row['ClassDashboard']; ?>" alt="img">

@@ -21,10 +21,10 @@
   
 
   
-  .create:hover {
+  .jason:hover {
     background-color: darkorange;
   }
-  .create {position: absolute;
+  .jason {position: absolute;
     bottom: 82%;
     right: 70%;
     padding: 0.7rem;
@@ -99,7 +99,7 @@
             }  
         }      
     ?>
-    <form class = create>
+    <form class = jason>
         <a href="../teacher/createclass.php" class="selection">
         Create Class
         </a>
