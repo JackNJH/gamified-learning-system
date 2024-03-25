@@ -7,7 +7,7 @@
 
     include '../components/header.php'; // Header
     
-    $data = isset($_GET['class_id']) ? $_GET['class_id'] : '';
+    $data = isset($_GET['ClassID']) ? $_GET['ClassID'] : '';
 
 
 
@@ -39,12 +39,12 @@ if (!isset($_SESSION['recent_pages'])) {
     $_SESSION['recent_pages'] = array();
 }
 
-// Add the current page to the history
-array_unshift($_SESSION['recent_pages'], $currentPage);
+if(!in_array($currentPage, $_SESSION['recent_pages'], TRUE)){
+    array_unshift($_SESSION['recent_pages'], $currentPage);
+}
 
-// Limit the number of stored pages (optional)
 $maxPages = 5;
-$_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages);
+$_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages); 
 ?>
 
 
@@ -66,19 +66,20 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
             while($row = mysqli_fetch_assoc($result1)){
         ?>
         <div class="classes">
-        <?php
-                $currentPage = $_SERVER['REQUEST_URI'];
+            <?php
 
                 if (isset($_SESSION['recent_pages'])) {
-                    $_SESSION['recent_pages'] = array();
+                    echo "<h3>Recently Visited Pages:</h3>";
+                    echo "<ul>";
+                    
+                    foreach ($_SESSION['recent_pages'] as $page) {
+                        echo "<li><a href='$page'>$page</a></li>";
+                    }
+                    echo "</ul>";
+                } 
+                else {
+                    echo "<p>No recent pages available.</p>";
                 }
-
-                if(!in_array($currentPage, $_SESSION['recent_pages'], TRUE)){
-                    array_unshift($_SESSION['recent_pages'], $currentPage);
-                }
-
-                $maxPages = 5;
-                $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
             ?>
         </div>
     </div>
@@ -109,6 +110,7 @@ $_SESSION['recent_pages'] = array_slice($_SESSION['recent_pages'], 0, $maxPages)
                             <div class="selection">
                                 <div class="ChapTitle"><b><?php echo $row['ChapterName'];?></div></b>
                             </div>
+                        <?php echo "</a>";?>
                      </div>
                 <?php
                     } 
