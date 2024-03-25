@@ -128,7 +128,7 @@ $resultEarned = mysqli_query($conn, $query);
             display: flex;
             justify-content: center;
             align-items: center; 
-            margin-top: 2vw; 
+            margin-top: 10%; 
             width: 100%;
         }
         .badge-wrapper {
@@ -158,7 +158,7 @@ $resultEarned = mysqli_query($conn, $query);
 
         .badges-buttons {
             display: flex;
-            margin-top: 2vw;
+            margin-top: 2.6vw;
             gap: 2vw;
         }
 

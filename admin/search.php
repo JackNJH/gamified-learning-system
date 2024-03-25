@@ -200,37 +200,6 @@
             color: #FF336B; 
         }
 
-        .delete-wrapper {
-            position: relative;
-            width: fit-content;
-        }
-
-        .delete-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            right: 0;
-            padding: 0.3vw 0.5vw;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 0.8vw;
-            font-family: 'Poppins', sans-serif;
-            background-color: #ff4444;
-        }
-
-        .delete-button:hover {
-            background-color: red;
-            font-weight: bold;
-        }
-
-        form {
-            display: inline-block;
-            margin: 0;
-            padding: 0;
-        }
-
         .class-difficulty {
             font-weight: bold;
         }
@@ -303,18 +272,11 @@
                         echo "<span class='other-class-data'><b>ID:</b> {$row['ClassID']}<br>";
                         echo "<b>Created By:</b> {$row['UserName']}<br>";
                         echo "<b>Created Date:</b> {$row['ClassCreateDate']}<br></span>";
-                        echo "<div class='delete-wrapper'>";
-                        echo "<button type='submit' class='delete-button' onclick='confirmDelete({$row['ClassID']})'>Delete</button>";
-                        echo "</div>";
                         echo "</td>";
                         echo "<td class='class-difficulty " . strtolower($row['ClassDiff']) . "'>{$row['ClassDiff']}</td>";
                         echo "</tr>";
                     }
                     ?>
-
-                <form id="deleteForm" method="post" action="../modules/delete_class.php">
-                    <input type="hidden" id="classIDToDelete" name="classID" value="">
-                </form>
                 </tbody>
             </table>
         </div>
@@ -337,15 +299,6 @@
             history.pushState(null, null, '?type=class'); 
         }
     }
-
-    function confirmDelete(classID) {
-            if (confirm("Are you sure you want to delete this class? This action is IRREVERSIBLE.")) {
-                document.getElementById("classIDToDelete").value = classID;
-                document.getElementById("deleteForm").submit(); 
-            } else {
-                alert("Deletion canceled.");
-            }
-        }
 </script>
 <script src="../js/search.js"></script>
 </body>

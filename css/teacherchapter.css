@@ -195,27 +195,23 @@
 
 }
 
-.sitaution button {
+.situation {
+    display: inline-block;
     padding: 0.7rem;
     background-color: orange;
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    width: 15rem;
-    justify-self: center;
-    margin: 0.5rem auto;
-  }
-  
-  .sitaution button[type="cancel"] {
-    justify-self: start;
-    margin-right: auto;
-  }
-  
-  .sitaution button:hover {
+    margin: 0.5rem;
+    text-decoration: none;
+}
+
+.situation:hover {
     background-color: darkorange;
-  }
-  .sitaution {position: absolute;
-      bottom: 2%;
-      right: 25%;}
+}
+.button-wrapper {
+display: flex;
+justify-content: center;
+}
 

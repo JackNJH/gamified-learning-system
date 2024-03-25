@@ -115,8 +115,7 @@
         }
 
         .dropdown-content a:hover {
-            background-color: #E8E8E8;
-            color:black;
+            background-color: #f1f1f1;
         }
 
         .username:hover .dropdown-content {
