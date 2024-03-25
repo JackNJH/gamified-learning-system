@@ -12,8 +12,13 @@
 
         VALUES ('$student_id','$_POST[TicketCtgy]','$_POST[TicketDesc]','pending', '$date')";
 
+
+    if(empty($_POST['TicketCtgy']) || empty($_POST['TicketDesc'])){
+        echo '<script>alert("Empty Ticket wont be submitted");window.location.href="Ticket.php";</script>';
+    }
+
     //just need to fix the upload to actually upload
-    if(!mysqli_query($conn,$sql)) {
+    else if(!mysqli_query($conn,$sql)) {
         die('Error: ' . mysqli_error($conn));
     }
         
