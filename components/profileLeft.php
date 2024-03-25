@@ -97,7 +97,7 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
         display: flex;
         justify-content: center;
         align-items: center; 
-        margin-top: 10%; 
+        margin-top: 2vw; 
         width: 100%;
     }
 
@@ -127,7 +127,7 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
 
     .badges-button {
         padding: 0.5vw 1vw;
-        margin-top: 2.6vw;
+        margin-top: 2vw;
         background-color: bisque;
         color: black;
         border: none;
@@ -198,12 +198,21 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
                 <div class="user-badge-container">
                     <?php foreach ($selectedBadges as $badgeKey => $badgeID): ?>
                         <div class="badge-wrapper">
-                            <?php if (!is_null($badgeID)): ?>
-                                <?php $badgeInfo = getBadgeInfo($conn, $badgeID); ?>
-                                <img class="user-badge" src="<?php echo $badgeInfo['BadgePic']; ?>" alt="<?php echo $badgeInfo['BadgeName']; ?>">
-                            <?php else: ?>
-                                <img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">
-                            <?php endif; ?>
+                        <?php 
+                        if (!is_null($badgeID)) {
+                            $badgeInfo = getBadgeInfo($conn, $badgeID);
+                            if ($badgeInfo) {
+                                // Badge exists, display badge image
+                                echo '<img class="user-badge" src="' . $badgeInfo['BadgePic'] . '" alt="' . $badgeInfo['BadgeName'] . '">';
+                            } else {
+                                // Badge not found, display default image
+                                echo '<img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">';
+                            }
+                        } else {
+                            // Badge ID is null, display default image
+                            echo '<img class="empty-badge" src="../images/badgePlaceholder.png" alt="Empty Badge">';
+                        }
+                        ?>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -235,6 +244,14 @@ $userProfilePicture = getUserProfilePicture($conn, $user_id);
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
 
 
 
